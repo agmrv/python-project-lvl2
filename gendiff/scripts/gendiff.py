@@ -1,12 +1,10 @@
-"""Script of 'Difference Calculator'."""
+"""Script of 'Difference Generator'."""
 
-import argparse
+from gendiff import engine
 
-parser = argparse.ArgumentParser(description='Generate diff')
-parser.add_argument('first_file', type=str)
-parser.add_argument('second_file', type=str)
-parser.add_argument('-f', '--format', metavar='FORMAT', help='set format of output')
-args = parser.parse_args()
+def main():
+    """Generate and return the difference."""
+    engine.generate_diff()
 
 if __name__ == '__main__':
     main()

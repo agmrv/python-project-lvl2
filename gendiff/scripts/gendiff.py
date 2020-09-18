@@ -1,10 +1,10 @@
 """Script of 'Difference Generator'."""
 
-from gendiff import engine
+from gendiff import get_diff
 
 def main():
     """Generate and return the difference."""
-    engine.generate_diff()
+    get_diff.get_diff()
 
 if __name__ == '__main__':
     main()

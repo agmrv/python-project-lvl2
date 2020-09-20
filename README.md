@@ -1,3 +1,7 @@
+[![Python CI](https://github.com/agmrv/python-project-lvl2/workflows/Python%20CI/badge.svg)](https://github.com/agmrv/python-project-lvl2/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/aadcef266d7fbd2937a2/maintainability)](https://codeclimate.com/github/agmrv/python-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/aadcef266d7fbd2937a2/test_coverage)](https://codeclimate.com/github/agmrv/python-project-lvl2/test_coverage)
+
 # Hello!
 
 ## This is the Python Project lvl 2 - Difference Generator

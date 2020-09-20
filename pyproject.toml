@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agmrv_gendiff"
-version = "0.1.3"
+version = "0.1.4"
 description = ""
 authors = ["agmrv <airatgum@gmail.com>"]
 packages = [
@@ -11,6 +11,7 @@ packages = [
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+wemake-python-styleguide = "^0.14.1"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"

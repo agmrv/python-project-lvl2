@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Engine of 'Difference Generator'."""
 
 import json

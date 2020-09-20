@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module of 'get_diff' function."""
 
 from gendiff import argparser, engine

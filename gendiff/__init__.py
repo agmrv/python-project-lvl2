@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Python project 'Difference Generator'."""
 
 # Шаг 3. Предоставление функции.

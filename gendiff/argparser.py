@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Agrparser of 'Difference Generator."""
 
 import argparse

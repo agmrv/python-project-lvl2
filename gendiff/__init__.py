@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 """Python project 'Difference Generator'."""
 
 # Шаг 3. Предоставление функции.

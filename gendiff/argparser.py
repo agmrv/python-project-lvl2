@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 """Agrparser of 'Difference Generator."""
 
 import argparse

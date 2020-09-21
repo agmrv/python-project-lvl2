@@ -4,7 +4,7 @@ install:
 lint:
 	poetry run flake8 gendiff
 
-# check:
-# 	poetry run pytest python-project-lvl2 tests
+test:
+	poetry run pytest tests -vv
 
-.PHONY: install lint check
+.PHONY: install lint test

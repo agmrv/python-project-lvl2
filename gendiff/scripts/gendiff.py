@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
 """Script of 'Difference Generator'."""
 
 from gendiff import get_diff

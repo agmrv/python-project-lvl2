@@ -1,8 +1,8 @@
+# -*- coding:utf-8 -*-
+
 """Engine of 'Difference Generator'."""
 
 import json
-
-compare = []
 
 
 def get_json(file_path):
@@ -27,6 +27,7 @@ def generate_diff(file_path1, file_path2):
     Returns:
         Return the diff.
     """
+    compare = []
     first_json = get_json(file_path1)
     second_json = get_json(file_path2)
     common_json = first_json.copy()

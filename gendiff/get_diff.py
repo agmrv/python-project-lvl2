@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 """Module of 'get_diff' function."""
 
 from gendiff import argparser, engine

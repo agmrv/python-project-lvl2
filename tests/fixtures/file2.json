@@ -3,5 +3,6 @@
     "123": 444,
     "verbose": true,
     "host": "hexlet.io",
-    "тест": null
+    "тест": null,
+    "test": "new text"
 }

@@ -33,14 +33,19 @@ def generate_diff(file_path1, file_path2):
     common_json = first_json.copy()
     common_json.update(second_json)
     for key, some_data in common_json.items():
+        if not isinstance(some_data, str):
+            some_data = json.dumps(some_data)  # convert some_data to JSON format
         if key not in second_json:
-            compare.append('  - {0}: {1}'.format(key, some_data))
+            compare.append('  - {0}: '.format(key) + some_data)
         elif key not in first_json:
-            compare.append('  + {0}: {1}'.format(key, some_data))
+            compare.append('  + {0}: '.format(key) + some_data)
         elif some_data == first_json[key]:
-            compare.append('    {0}: {1}'.format(key, some_data))
+            compare.append('    {0}: '.format(key) + some_data)
         else:
-            compare.append('  - {0}: {1}'.format(key, first_json[key]))
-            compare.append('  + {0}: {1}'.format(key, some_data))
+            if isinstance(first_json[key], str):
+                compare.append('  - {0}: '.format(key) + first_json[key])
+            else:
+                compare.append('  - {0}: '.format(key) + json.dumps(first_json[key]))
+            compare.append('  + {0}: '.format(key) + some_data)
 
     return '{0}\n{1}\n{2}'.format('{', '\n'.join(compare), '}')

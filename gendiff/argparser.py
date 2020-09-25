@@ -3,6 +3,7 @@
 """Agrparser of 'Difference Generator."""
 
 import argparse
+from os.path import abspath
 
 
 def get_args():
@@ -32,4 +33,4 @@ def get_file_paths():
     Returns:
         The file paths.
     """
-    return ARGS.first_file, ARGS.second_file
+    return abspath(ARGS.first_file), abspath(ARGS.second_file)

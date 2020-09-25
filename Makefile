@@ -7,4 +7,6 @@ lint:
 test:
 	poetry run pytest tests -vv
 
-.PHONY: install lint test
+check: lint test
+
+.PHONY: install lint test check

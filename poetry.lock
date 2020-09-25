@@ -465,7 +465,7 @@ checkqa_mypy = ["mypy (0.780)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -598,7 +598,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "db8a11b472305d3efc50319a6c761a3bbf2305e930bfa250a99a5540a91b9901"
+content-hash = "7eb6cb930669e9fa63a4b4838129ba928725d0e3556b3e36225e78cee2d357b3"
 python-versions = "^3.6"
 
 [metadata.files]

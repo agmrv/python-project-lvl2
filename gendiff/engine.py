@@ -2,19 +2,7 @@
 
 """Engine of 'Difference Generator'."""
 
-import json
-
-
-def get_json(file_path):
-    """Get JSON from file_path.
-
-    Args:
-        file_path: path to file.
-
-    Returns:
-        Return JSON Object  # ???
-    """
-    return json.load(open(file_path))  # noqa: WPS515
+from gendiff.upload_file import get_file
 
 
 def generate_diff(file_path1, file_path2):
@@ -28,24 +16,19 @@ def generate_diff(file_path1, file_path2):
         Return the diff.
     """
     compare = []
-    first_json = get_json(file_path1)
-    second_json = get_json(file_path2)
-    common_json = first_json.copy()
-    common_json.update(second_json)
-    for key, some_data in common_json.items():
-        if not isinstance(some_data, str):
-            some_data = json.dumps(some_data)  # convert data to JSON format
-        if key not in second_json:
-            compare.append('  - {0}: '.format(key) + some_data)
-        elif key not in first_json:
-            compare.append('  + {0}: '.format(key) + some_data)
-        elif some_data == first_json[key]:
-            compare.append('    {0}: '.format(key) + some_data)
-        elif isinstance(first_json[key], str):
-            compare.append('  - {0}: '.format(key) + first_json[key])
-            compare.append('  + {0}: '.format(key) + some_data)
+    before = get_file(file_path1)
+    after = get_file(file_path2)
+    common = before.copy()
+    common.update(after)
+    for key, some_data in common.items():
+        if key not in after:
+            compare.append('  - {0}: {1}'.format(key, some_data))
+        elif key not in before:
+            compare.append('  + {0}: {1}'.format(key, some_data))
+        elif some_data == before[key]:
+            compare.append('    {0}: {1}'.format(key, some_data))
         else:
-            compare.append('  - {0}: '.format(key) + json.dumps(first_json[key]))  # noqa: E501
-            compare.append('  + {0}: '.format(key) + some_data)
+            compare.append('  - {0}: {1}'.format(key, before[key]))
+            compare.append('  + {0}: {1}'.format(key, some_data))
 
     return '{0}\n{1}\n{2}'.format('{', '\n'.join(compare), '}')

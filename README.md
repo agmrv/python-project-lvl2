@@ -6,9 +6,13 @@
 
 ## This is the Python Project lvl 2 - Difference Generator
 
-## In [this](#instruction) video below you will see how to *install** the 'Difference Generator' package and how to get the diff.
+## In [these](#videos) videos below you will see how to *install** the 'Difference Generator' package and how to get the diff.
 *to install this package run the command:
-`pip install -i https://test.pypi.org/simple/ agmrv-gendiff`
+`pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple agmrv-gendiff`
 
-### Instruction
+## Videos:
+### Install and example for JSON files:
 <a href="https://asciinema.org/a/p5PLICUICkCca1LAUdwLa3QMV" target="_blank"><img src="https://asciinema.org/a/p5PLICUICkCca1LAUdwLa3QMV.svg" width="600" ></a>
+
+### Example for YAML files:
+<a href="https://asciinema.org/a/BITsbDtgWDyRRnrnteWRfATfp" target="_blank"><img src="https://asciinema.org/a/BITsbDtgWDyRRnrnteWRfATfp.svg" width="600"></a>

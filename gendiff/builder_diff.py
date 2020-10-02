@@ -7,7 +7,7 @@ from gendiff.upload_file import get_file
 
 
 def build_diff(before, after):
-    """Build the diif between before and after files.
+    """Build the diff between before and after files.
 
     Args:
         before: file before change

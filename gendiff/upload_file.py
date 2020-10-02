@@ -11,11 +11,13 @@ import yaml
 MAPPING_FOR_UPLOAD = types.MappingProxyType({
     'json': lambda path: json.load(open(path)),
     'yml': lambda path: yaml.safe_load(open(path)),
+    'yaml': lambda path: yaml.safe_load(open(path)),
 })
 
 MAPPING_FOR_CONVERT_VALUE = types.MappingProxyType({
     'json': lambda element: json.dumps(element),
     'yml': lambda element: yaml.safe_dump(element).split('\n')[0],
+    'yaml': lambda element: yaml.safe_dump(element).split('\n')[0],
 })
 
 

@@ -34,3 +34,13 @@ def test_generate_diff_tree_JSON():
     with open(expected_abspath, mode='r', encoding='UTF-8') as compare:
         expected = compare.read()
     assert (generate_diff(file1_abspath, file2_abspath)) == expected
+
+
+def test_generate_diff_tree_YAML():
+    """Test for tree JSON files."""
+    file1_abspath = abspath('tests/fixtures/before_tree.yml')
+    file2_abspath = abspath('tests/fixtures/after_tree.yml')
+    expected_abspath = abspath('tests/fixtures/compare_tree_YAML.txt')
+    with open(expected_abspath, mode='r', encoding='UTF-8') as compare:
+        expected = compare.read()
+    assert (generate_diff(file1_abspath, file2_abspath)) == expected

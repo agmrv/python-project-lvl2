@@ -18,19 +18,26 @@ def get_args():
     parser.add_argument(
         '-f',
         '--format',
-        metavar='FORMAT',
+        default='JSON-like',
         help='set format of output',
+        metavar='FORMAT',
         )
     return parser.parse_args()
 
 
-ARGS = get_args()
+def get_output_format():
+    """Get the ouput format.
+
+    Returns:
+        format
+    """
+    return get_args().format
 
 
 def get_file_paths():
     """Get the file paths.
 
     Returns:
-        The file paths.
+        The file paths
     """
-    return abspath(ARGS.first_file), abspath(ARGS.second_file)
+    return abspath(get_args().first_file), abspath(get_args().second_file)

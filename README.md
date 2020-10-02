@@ -16,3 +16,6 @@
 
 ### Example for flat YAML files:
 <a href="https://asciinema.org/a/BITsbDtgWDyRRnrnteWRfATfp" target="_blank"><img src="https://asciinema.org/a/BITsbDtgWDyRRnrnteWRfATfp.svg" width="600"></a>
+
+### Example for tree JSON and YAML files:
+<a href="https://asciinema.org/a/70RZuqWOTglJiXIyD2emZ7XQj" target="_blank"><img src="https://asciinema.org/a/70RZuqWOTglJiXIyD2emZ7XQj.svg" width="600"></a>

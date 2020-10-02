@@ -2,8 +2,17 @@
 
 """Module of Difference Builder."""
 
-from gendiff.rendering import render
-from gendiff.upload_file import get_file
+
+def has_children(element):
+    """Сhecks if the element has children.
+
+    Args:
+        element: value to check
+
+    Returns:
+        Bool
+    """
+    return 'children' in element
 
 
 def build_diff(before, after):
@@ -47,18 +56,3 @@ def build_diff(before, after):
                 'status': 'modified',
             }
     return diff
-
-
-def generate_diff(file_path1, file_path2):
-    """Generate the diff between file_path1 and file_path2 files.
-
-    Args:
-        file_path1: path to first file
-        file_path2: path to second file
-
-    Returns:
-        Return the diff.
-    """
-    before = get_file(file_path1)
-    after = get_file(file_path2)
-    return render(build_diff(before, after))

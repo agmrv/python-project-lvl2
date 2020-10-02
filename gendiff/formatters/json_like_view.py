@@ -1,26 +1,13 @@
-# -*- coding:utf-8 -*-
-
-"""Module of Rendering function."""
+"""Module of Rendering to JSON-like format function."""
 
 import types
+from gendiff.builder_diff import has_children
 
 MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({
     'removed': '-',
     'added': '+',
     'unmodified': ' ',
 })
-
-
-def has_children(element):
-    """Сhecks if the element has children.
-
-    Args:
-        element: value to check
-
-    Returns:
-        Bool
-    """
-    return 'children' in element
 
 
 def generate_string_diff(indent, sign, key, some_value):

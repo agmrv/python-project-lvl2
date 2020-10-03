@@ -6,3 +6,4 @@ dist/
 examples/
 test/
 .coverage
+.pytest_cache

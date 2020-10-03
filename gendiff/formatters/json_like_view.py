@@ -1,6 +1,7 @@
 """Module of Rendering to JSON-like format function."""
 
 import types
+
 from gendiff.builder_diff import has_children
 
 MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({

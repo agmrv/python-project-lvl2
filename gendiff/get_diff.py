@@ -21,11 +21,12 @@ def generate_diff(file_path1, file_path2, output_format='JSON-like'):
     Args:
         file_path1: path to first file
         file_path2: path to second file
+        output_format: output format: plain or JSON-like
 
     Returns:
         Return the formatted diff.
     """
-    MAPPING_FOR_CHOOSE_RENDER_FUNCTION = {
+    mapping_for_choose_render_function = {
         'plain': plain_view.render,
         'JSON-like': json_like_view.render,
     }
@@ -34,4 +35,4 @@ def generate_diff(file_path1, file_path2, output_format='JSON-like'):
     after = get_file(file_path2)
     diff = build_diff(before, after)
 
-    return MAPPING_FOR_CHOOSE_RENDER_FUNCTION[output_format](diff)
+    return mapping_for_choose_render_function[output_format](diff)

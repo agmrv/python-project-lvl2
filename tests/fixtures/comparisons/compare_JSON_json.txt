@@ -1,0 +1,38 @@
+{
+    "123": {
+        "new_value": "444",
+        "old_value": "123",
+        "status": "modified"
+    },
+    "follow": {
+        "status": "removed",
+        "value": "false"
+    },
+    "host": {
+        "status": "unmodified",
+        "value": "\"hexlet.io\""
+    },
+    "proxy": {
+        "status": "removed",
+        "value": "\"123.234.53.22\""
+    },
+    "test": {
+        "new_value": "\"new text\"",
+        "old_value": "\"text\"",
+        "status": "modified"
+    },
+    "timeout": {
+        "new_value": "20",
+        "old_value": "50",
+        "status": "modified"
+    },
+    "verbose": {
+        "new_value": "true",
+        "old_value": "false",
+        "status": "modified"
+    },
+    "тест": {
+        "status": "added",
+        "value": "null"
+    }
+}

@@ -1,6 +1,23 @@
 """Module of Rendering to plain format function."""
 
 from gendiff.builder_diff import has_children
+from gendiff.upload_file import was_string, remove_dubleqoutes
+
+
+def formatting(data):
+    """Converts the value to the desired output format.
+
+    Args:
+        data: value to convert
+
+    Returns:
+        formatted string
+    """
+    if isinstance(data, dict):
+        return '[complex value]'
+    if was_string(data):
+        return f"'{remove_dubleqoutes(data)}'"
+    return data
 
 
 def generate_string_diff(path, status, diff_value):
@@ -15,17 +32,13 @@ def generate_string_diff(path, status, diff_value):
         string
     """
     if status == 'removed':
-        return "Property '{0}' was {1}".format(path, status)
+        return f"Property '{path}' was {status}"
     if status == 'added':
-        return "Property '{0}' was {1} with value: {2}".format(path, status, diff_value)
+        return f"Property '{path}' was {status} with value: {formatting(diff_value)}"
     if status == 'modified':
-        old_value = diff_value['old_value']
-        new_value = diff_value['new_value']
-        return "Property '{0}' was updated. From {1} to {2}".format(
-            path,
-            '[complex value]' if isinstance(old_value, dict) else old_value,
-            '[complex value]' if isinstance(new_value, dict) else new_value,
-        )
+        old_value = formatting(diff_value['old_value'])
+        new_value = formatting(diff_value['new_value'])
+        return f"Property '{path}' was updated. From {old_value} to {new_value}"
 
 
 def render(diff, path=''):
@@ -45,7 +58,7 @@ def render(diff, path=''):
             continue
         if status == 'modified':
             if has_children(diff_value):
-                output_parts.extend(render(diff_value['children'], path + key))
+                output_parts.append(render(diff_value['children'], path + f'{key}.'))
             else:
                 output_parts.append(generate_string_diff(path + key, status, diff_value))
         else:

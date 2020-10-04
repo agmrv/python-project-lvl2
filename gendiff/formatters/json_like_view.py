@@ -3,6 +3,7 @@
 import types
 
 from gendiff.builder_diff import has_children
+from gendiff.upload_file import was_string, remove_dubleqoutes
 
 MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({
     'removed': '-',
@@ -53,6 +54,8 @@ def value_to_str_like_json(value_data, nesting_lvl):
             '    ' * (nesting_lvl - 1),
             '}',
             )
+    if was_string(value_data):
+        return remove_dubleqoutes(value_data)
     return value_data
 
 

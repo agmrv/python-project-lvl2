@@ -3,7 +3,7 @@
 import types
 
 from gendiff.builder_diff import has_children
-from gendiff.upload_file import was_string, remove_dubleqoutes
+from gendiff.upload_file import remove_dubleqoutes, was_string
 
 MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({
     'removed': '-',
@@ -46,14 +46,14 @@ def value_to_str_like_json(value_data, nesting_lvl):
                     indent,
                     data_key,
                     value_to_str_like_json(data_value, nesting_lvl + 1),
-                    ),
-                )
+                ),
+            )
         return '{0}{1}\n{2}{3}'.format(
             '{\n',
             '\n'.join(formatted_value_parts),
             '    ' * (nesting_lvl - 1),
             '}',
-            )
+        )
     if was_string(value_data):
         return remove_dubleqoutes(value_data)
     return value_data
@@ -80,31 +80,27 @@ def diff_to_str_like_json(diff_data, nesting_lvl):
                     ' ',
                     data_key,
                     diff_to_str_like_json(data_value['children'], nesting_lvl + 1),
-                    ),
-                )
+                ))
             else:
                 output_parts.append(generate_string_diff(
                     indent,
                     MAPPING_FOR_CHOOSE_SIGN['removed'],
                     data_key,
                     value_to_str_like_json(data_value['old_value'], nesting_lvl + 2),
-                    ),
-                )
+                ))
                 output_parts.append(generate_string_diff(
                     indent,
                     MAPPING_FOR_CHOOSE_SIGN['added'],
                     data_key,
                     value_to_str_like_json(data_value['new_value'], nesting_lvl + 2),
-                    ),
-                )
+                ))
         else:
             output_parts.append(generate_string_diff(
                 indent,
                 MAPPING_FOR_CHOOSE_SIGN[status],
                 data_key,
                 value_to_str_like_json(data_value['value'], nesting_lvl + 2),
-                ),
-            )
+            ))
     return '{0}\n{1}\n{2}{3}'.format('{', '\n'.join(output_parts), indent, '}')
 
 

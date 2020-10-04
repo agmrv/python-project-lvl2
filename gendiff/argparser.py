@@ -21,7 +21,7 @@ def get_args():
         default='JSON-like',
         help='set format of output',
         metavar='FORMAT',
-        )
+    )
     return parser.parse_args()
 
 

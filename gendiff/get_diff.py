@@ -9,10 +9,14 @@ from gendiff.upload_file import get_file
 
 
 def get_diff():
-    """Print the diff."""
+    """Start getting diff.
+
+    Returns:
+        the diff string to output
+    """
     output_format = get_output_format()
     first_file_path, second_file_path = get_file_paths()
-    print(generate_diff(first_file_path, second_file_path, output_format))
+    return generate_diff(first_file_path, second_file_path, output_format)
 
 
 def generate_diff(file_path1, file_path2, output_format='JSON-like'):

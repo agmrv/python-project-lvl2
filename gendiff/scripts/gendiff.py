@@ -8,7 +8,7 @@ from gendiff import get_diff
 
 def main():
     """Generate and return the difference."""
-    get_diff.get_diff()
+    print(get_diff.get_diff())
 
 
 if __name__ == '__main__':

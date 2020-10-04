@@ -1,23 +1,23 @@
 """Module of Rendering to plain format function."""
 
 from gendiff.builder_diff import has_children
-from gendiff.upload_file import was_string, remove_dubleqoutes
+from gendiff.upload_file import remove_dubleqoutes, was_string
 
 
-def formatting(data):
-    """Converts the value to the desired output format.
+def formatting(element):
+    """Convert the value to the desired output format.
 
     Args:
-        data: value to convert
+        element: value to convert
 
     Returns:
         formatted string
     """
-    if isinstance(data, dict):
+    if isinstance(element, dict):
         return '[complex value]'
-    if was_string(data):
-        return f"'{remove_dubleqoutes(data)}'"
-    return data
+    if was_string(element):
+        return "'{0}'".format(remove_dubleqoutes(element))
+    return element
 
 
 def generate_string_diff(path, status, diff_value):
@@ -32,13 +32,21 @@ def generate_string_diff(path, status, diff_value):
         string
     """
     if status == 'removed':
-        return f"Property '{path}' was {status}"
+        return "Property '{0}' was {1}".format(path, status)
     if status == 'added':
-        return f"Property '{path}' was {status} with value: {formatting(diff_value)}"
+        return "Property '{0}' was {1} with value: {2}".format(
+            path,
+            status,
+            formatting(diff_value),
+        )
     if status == 'modified':
         old_value = formatting(diff_value['old_value'])
         new_value = formatting(diff_value['new_value'])
-        return f"Property '{path}' was updated. From {old_value} to {new_value}"
+        return "Property '{0}' was updated. From {1} to {2}".format(
+            path,
+            old_value,
+            new_value,
+        )
 
 
 def render(diff, path=''):
@@ -58,7 +66,8 @@ def render(diff, path=''):
             continue
         if status == 'modified':
             if has_children(diff_value):
-                output_parts.append(render(diff_value['children'], path + f'{key}.'))
+                new_path = '{0}{1}.'.format(path, key)
+                output_parts.append(render(diff_value['children'], new_path))
             else:
                 output_parts.append(generate_string_diff(path + key, status, diff_value))
         else:

@@ -9,9 +9,9 @@ from os.path import basename
 import yaml
 
 MAPPING_FOR_UPLOAD = types.MappingProxyType({
-    'json': lambda path: json.load(open(path)),
-    'yml': lambda path: yaml.safe_load(open(path)),
-    'yaml': lambda path: yaml.safe_load(open(path)),
+    'json': lambda fd: json.load(fd),
+    'yml': lambda fd: yaml.safe_load(fd),
+    'yaml': lambda fd: yaml.safe_load(fd),
 })
 
 
@@ -20,13 +20,13 @@ def yaml_convert_value(element):
 
     Args:
         element: value to convert
-    
+
     Returns:
         string
     """
     if isinstance(element, str):
         new_element = yaml.safe_dump(element).split('\n')[0]
-        return f'"{new_element}"'
+        return '"{0}"'.format(new_element)
     return yaml.safe_dump(element).split('\n')[0]
 
 
@@ -62,34 +62,37 @@ def get_file(filepath):
     """
     filename = basename(filepath)
     _, extension = filename.split('.')
-    file_object = MAPPING_FOR_UPLOAD[extension](filepath)
-    convert_values(file_object, extension)  # convert data to initial format
-    return file_object
+    with open(filepath) as file_descriptor:
+        file_object = MAPPING_FOR_UPLOAD[extension](file_descriptor)
+        convert_values(file_object, extension)  # convert data to initial format
+        return file_object
 
 
-def was_string(element):
-    """Checks if it was a string before converting.
+def was_string(element_to_check):
+    """Check if it was a string before converting.
+
     Needed for correct output format with or without quotes
     in formatter functions.
 
     Args:
-        element: value for check
+        element_to_check: value for check
 
     Returns:
         bool
     """
-    return element.startswith('"') and element.endswith('"')
+    return element_to_check.startswith('"') and element_to_check.endswith('"')
 
 
-def remove_dubleqoutes(element):
+def remove_dubleqoutes(element_to_change):
     """Remove duble quotes from string.
+
     Needed for correct output format with or without quotes
     in formatter functions.
 
     Args:
-        element: string for change
+        element_to_change: string to change
 
     Returns:
         string
     """
-    return element[1:-1]
+    return element_to_change[1:-1]

@@ -39,7 +39,10 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
     try:
         formatter = mapping_for_choose_render_function[output_format]
     except KeyError as key_error:
-        return "Invalid output format: {0}.\nTry 'json', 'plain' or 'json-like'.".format(key_error)  # noqa: E501
+        return (
+            'Invalid output format: {0}.\n'.format(key_error) +
+            "Try 'json', 'plain' or 'json-like'."
+        )
 
     try:
         before = get_file(file_path1)

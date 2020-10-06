@@ -36,8 +36,17 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
         'json': json_view.render,
     }
 
-    before = get_file(file_path1)
-    after = get_file(file_path2)
+    try:
+        formatter = mapping_for_choose_render_function[output_format]
+    except KeyError as error:
+        return f"Invalid output format: {error}.\nTry 'json', 'plain' or 'json-like'."
+
+    try:
+        before = get_file(file_path1)
+        after = get_file(file_path2)
+    except FileNotFoundError as error:
+        return f"File not found.\n{error.args[1]}: '{error.filename}'"
+
     diff = build_diff(before, after)
 
-    return mapping_for_choose_render_function[output_format](diff)
+    return formatter(diff)

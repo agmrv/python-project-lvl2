@@ -4,15 +4,17 @@
 
 from gendiff import generate_diff
 from os.path import abspath
+from os import getcwd
 
 
 def test_file_not_found():
     """Test for 'File Not Found' case."""
     file1_abspath = abspath('tests/fixtures/nonexistent.json')
     file2_abspath = abspath('tests/fixtures/after.json')
+    cwd = getcwd()
     expected = ("File not found.\n"
                 "No such file or directory: "
-                "'/home/agmrv/python-project-lvl2/tests/fixtures/nonexistent.json'")
+                f"'{cwd}/tests/fixtures/nonexistent.json'")
     assert (generate_diff(file1_abspath, file2_abspath)) == expected
 
 

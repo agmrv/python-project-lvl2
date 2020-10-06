@@ -38,14 +38,24 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
 
     try:
         formatter = mapping_for_choose_render_function[output_format]
-    except KeyError as error:
-        return f"Invalid output format: {error}.\nTry 'json', 'plain' or 'json-like'."
+    except KeyError as key_error:
+        return "Invalid output format: {0}.\nTry 'json', 'plain' or 'json-like'.".format(key_error)  # noqa: E501
 
     try:
         before = get_file(file_path1)
+    except FileNotFoundError as error_before:
+        return "File not found.\n{0}: '{1}'".format(
+            error_before.args[1],
+            error_before.filename,
+        )
+
+    try:
         after = get_file(file_path2)
-    except FileNotFoundError as error:
-        return f"File not found.\n{error.args[1]}: '{error.filename}'"
+    except FileNotFoundError as error_after:
+        return "File not found.\n{0}: '{1}'".format(
+            error_after.args[1],
+            error_after.filename,
+        )
 
     diff = build_diff(before, after)
 

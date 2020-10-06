@@ -46,18 +46,11 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
 
     try:
         before = get_file(file_path1)
-    except FileNotFoundError as error_before:
-        return "File not found.\n{0}: '{1}'".format(
-            error_before.args[1],
-            error_before.filename,
-        )
-
-    try:
         after = get_file(file_path2)
-    except FileNotFoundError as error_after:
+    except FileNotFoundError as file_error:
         return "File not found.\n{0}: '{1}'".format(
-            error_after.args[1],
-            error_after.filename,
+            file_error.args[1],
+            file_error.filename,
         )
 
     diff = build_diff(before, after)

@@ -59,7 +59,7 @@ def value_to_str_like_json(value_data, nesting_lvl):
     return value_data
 
 
-def diff_to_str_like_json(diff_data, nesting_lvl):
+def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
     """Render the diff to string like JSON.
 
     Args:
@@ -82,18 +82,16 @@ def diff_to_str_like_json(diff_data, nesting_lvl):
                     diff_to_str_like_json(data_value['children'], nesting_lvl + 1),
                 ))
             else:
-                output_parts.append(generate_string_diff(
-                    indent,
-                    MAPPING_FOR_CHOOSE_SIGN['removed'],
-                    data_key,
-                    value_to_str_like_json(data_value['old_value'], nesting_lvl + 2),
-                ))
-                output_parts.append(generate_string_diff(
-                    indent,
-                    MAPPING_FOR_CHOOSE_SIGN['added'],
-                    data_key,
-                    value_to_str_like_json(data_value['new_value'], nesting_lvl + 2),
-                ))
+                current_items = (('removed', 'old_value'), ('added', 'new_value'))
+                for current_status, current_value in current_items:
+                    output_parts.append(generate_string_diff(
+                        indent,
+                        MAPPING_FOR_CHOOSE_SIGN[current_status],
+                        data_key,
+                        value_to_str_like_json(
+                            data_value[current_value],
+                            nesting_lvl + 2,
+                        )))
         else:
             output_parts.append(generate_string_diff(
                 indent,

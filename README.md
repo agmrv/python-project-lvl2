@@ -2,6 +2,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/aadcef266d7fbd2937a2/maintainability)](https://codeclimate.com/github/agmrv/python-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/aadcef266d7fbd2937a2/test_coverage)](https://codeclimate.com/github/agmrv/python-project-lvl2/test_coverage)
 [![Test Pypi Download](https://img.shields.io/badge/Test%20Pypi-Download-brightgreen)](https://test.pypi.org/project/agmrv-gendiff/#files)
+[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
 # Hello!
 

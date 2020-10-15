@@ -4,14 +4,14 @@
 
 import json
 import types
-from os.path import basename
+from os.path import splitext
 
 import yaml
 
 MAPPING_FOR_UPLOAD = types.MappingProxyType({
-    'json': lambda fd: json.load(fd),
-    'yml': lambda fd: yaml.safe_load(fd),
-    'yaml': lambda fd: yaml.safe_load(fd),
+    '.json': lambda fd: json.load(fd),
+    '.yml': lambda fd: yaml.safe_load(fd),
+    '.yaml': lambda fd: yaml.safe_load(fd),
 })
 
 
@@ -31,9 +31,9 @@ def yaml_convert_value(element):
 
 
 MAPPING_FOR_CONVERT_VALUE = types.MappingProxyType({
-    'json': lambda element: json.dumps(element),
-    'yml': yaml_convert_value,
-    'yaml': yaml_convert_value,
+    '.json': lambda element: json.dumps(element),
+    '.yml': yaml_convert_value,
+    '.yaml': yaml_convert_value,
 })
 
 
@@ -60,8 +60,7 @@ def get_file(filepath):
     Returns:
         File Object.  # ???
     """
-    filename = basename(filepath)
-    _, extension = filename.split('.')
+    _, extension = splitext(filepath)
     with open(filepath) as file_descriptor:
         file_object = MAPPING_FOR_UPLOAD[extension](file_descriptor)
         convert_values(file_object, extension)  # convert data to initial format

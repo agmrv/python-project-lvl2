@@ -1,5 +1,6 @@
-host: hexlet.io
 timeout: 20
+'123': 444
 verbose: true
+host: hexlet.io
 тест: null
 test: new text

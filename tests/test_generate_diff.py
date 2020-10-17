@@ -2,9 +2,9 @@
 
 """'generate_diff' function tests."""
 
-from gendiff import generate_diff
 import pytest
 
+from gendiff import generate_diff
 
 # flat files
 before_json = 'tests/fixtures/before.json'
@@ -26,42 +26,66 @@ tree_json = 'tests/fixtures/comparisons/compare_tree_json.txt'
 tree_plain = 'tests/fixtures/comparisons/compare_tree_plain.txt'
 tree_string = 'tests/fixtures/comparisons/compare_tree.txt'
 
-FLAT_FILES = [
+flat_files = [
     (before_json, after_json),
     (before_yaml, after_yaml),
 ]
 
-FLAT_COMPARISONS = [
+flat_comparisons = [
     (json, 'json'),
     (plain, 'plain'),
     (string, 'json-like'),
 ]
 
-TREE_FILES = [
+tree_files = [
     (before_tree_json, after_tree_json),
     (before_tree_yaml, after_tree_yaml),
 ]
 
-TREE_COMPARISONS = [
+tree_comparisons = [
     (tree_json, 'json'),
     (tree_plain, 'plain'),
     (tree_string, 'json-like'),
 ]
 
 
-@pytest.mark.parametrize('result, output_format', FLAT_COMPARISONS, ids=['json', 'plain', 'string'])
-@pytest.mark.parametrize('before, after', FLAT_FILES, ids=['json', 'yaml'])
-def test_generate_diff_for_flat_files(before, after, result, output_format):
-    with open(result, mode='r', encoding='UTF-8') as r:
-        expected = r.read()
+@pytest.mark.parametrize(
+    'compare_result, output_format',
+    flat_comparisons,
+    ids=['json', 'plain', 'string'],
+)
+@pytest.mark.parametrize('before, after', flat_files, ids=['json', 'yaml'])
+def test_generate_diff_for_flat_files(before, after, compare_result, output_format):
+    """Test for flat files.
+
+    Args:
+        before: before file path
+        after: after file path
+        compare_result: compare file path
+        output_format: output format
+    """
+    with open(compare_result, mode='r', encoding='UTF-8') as compare:
+        expected = compare.read()
         output = generate_diff(before, after, output_format)
-        assert output == expected
+        assert output == expected  # noqa: S101
 
 
-@pytest.mark.parametrize('result, output_format', TREE_COMPARISONS, ids=['json', 'plain', 'string'])
-@pytest.mark.parametrize('before, after', TREE_FILES, ids=['tree_json', 'tree_yaml'])
-def test_generate_diff_for_tree_files(before, after, result, output_format):
-    with open(result, mode='r', encoding='UTF-8') as r:
-        expected = r.read()
+@pytest.mark.parametrize(
+    'compare_result, output_format',
+    tree_comparisons,
+    ids=['json', 'plain', 'string'],
+)
+@pytest.mark.parametrize('before, after', tree_files, ids=['tree_json', 'tree_yaml'])
+def test_generate_diff_for_tree_files(before, after, compare_result, output_format):
+    """Test for tree files.
+
+    Args:
+        before: before file path
+        after: after file path
+        compare_result: compare file path
+        output_format: output format
+    """
+    with open(compare_result, mode='r', encoding='UTF-8') as compare:
+        expected = compare.read()
         output = generate_diff(before, after, output_format)
-        assert output == expected
+        assert output == expected  # noqa: S101

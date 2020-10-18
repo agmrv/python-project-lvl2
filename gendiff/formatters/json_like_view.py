@@ -69,7 +69,7 @@ def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
         String like JSON to output.
     """
     output_parts = []
-    for data_key, data_value in sorted(diff_data.items(), key=lambda pair: pair[0]):
+    for data_key, data_value in diff_data.items():
         status = data_value['status']
         indent = '    ' * nesting_lvl
         if status == 'modified':

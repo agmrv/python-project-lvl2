@@ -2,6 +2,8 @@
 
 """Module of Difference Builder."""
 
+from collections import OrderedDict
+
 from gendiff.formatters import json_like_view, json_view, plain_view
 from gendiff.upload_file import get_file
 
@@ -17,36 +19,45 @@ def build_diff(before, after):
         diff.
     """
     diff = {}
-    common = before.copy()
-    common.update(after)
-    for key, some_data in common.items():
-        if key not in after:
-            diff[key] = {
-                'value': some_data,
-                'status': 'removed',
-            }
-        elif key not in before:
-            diff[key] = {
-                'value': some_data,
-                'status': 'added',
-            }
-        elif some_data == before[key]:
-            diff[key] = {
-                'value': some_data,
+    before_keys = set(before.keys())
+    after_keys = set(after.keys())
+
+    removed_keys = before_keys.difference(after_keys)
+    for removed_key in removed_keys:
+        diff[removed_key] = {
+            'value': before[removed_key],
+            'status': 'removed',
+        }
+
+    added_keys = after_keys.difference(before_keys)
+    for added_key in added_keys:
+        diff[added_key] = {
+            'value': after[added_key],
+            'status': 'added',
+        }
+
+    common_keys = before_keys.intersection(after_keys)
+    for common_key in common_keys:
+        before_value = before[common_key]
+        after_value = after[common_key]
+        if before_value == after_value:
+            diff[common_key] = {
+                'value': before_value,
                 'status': 'unmodified',
             }
-        elif isinstance(some_data, dict) and isinstance(before[key], dict):
-            diff[key] = {
-                'children': build_diff(before[key], some_data),
+        elif isinstance(before_value, dict) and isinstance(after_value, dict):
+            diff[common_key] = {
+                'children': build_diff(before_value, after_value),
                 'status': 'modified',
             }
         else:
-            diff[key] = {
-                'new_value': some_data,
-                'old_value': before[key],
+            diff[common_key] = {
+                'new_value': after_value,
+                'old_value': before_value,
                 'status': 'modified',
             }
-    return diff
+
+    return OrderedDict(sorted(diff.items(), key=lambda pair: pair[0]))
 
 
 def generate_diff(file_path1, file_path2, output_format='json-like'):

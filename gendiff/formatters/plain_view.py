@@ -59,7 +59,7 @@ def render(diff, path=''):
         string
     """
     output_parts = []
-    for key, diff_value in sorted(diff.items(), key=lambda pair: pair[0]):
+    for key, diff_value in diff.items():
         status = diff_value['status']
         if status == 'unmodified':
             continue

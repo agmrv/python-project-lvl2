@@ -51,7 +51,7 @@ def convert_values(some_item, extension):
             some_item[key] = MAPPING_FOR_CONVERT_VALUE[extension](some_value)
 
 
-def get_file(filepath):
+def upload_file(filepath):
     """Upload file from filepath.
 
     Args:

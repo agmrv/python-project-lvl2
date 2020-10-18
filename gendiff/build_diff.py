@@ -5,7 +5,7 @@
 from collections import OrderedDict
 
 from gendiff.formatters import json_like_view, json_view, plain_view
-from gendiff.upload_file import get_file
+from gendiff.upload_file import upload_file
 
 
 def build_diff(before, after):
@@ -86,8 +86,8 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
         )
 
     try:
-        before = get_file(file_path1)
-        after = get_file(file_path2)
+        before = upload_file(file_path1)
+        after = upload_file(file_path2)
     except FileNotFoundError as file_error:
         return "File not found.\n{0}: '{1}'".format(
             file_error.args[1],

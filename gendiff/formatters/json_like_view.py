@@ -2,7 +2,6 @@
 
 import types
 
-from gendiff.builder_diff import has_children
 from gendiff.upload_file import remove_dubleqoutes, was_string
 
 MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({
@@ -74,12 +73,12 @@ def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
         status = data_value['status']
         indent = '    ' * nesting_lvl
         if status == 'modified':
-            if has_children(data_value):
+            if 'children' in data_value:
                 output_parts.append(generate_string_diff(
                     indent,
                     ' ',
                     data_key,
-                    diff_to_str_like_json(data_value['children'], nesting_lvl + 1),
+                    diff_to_str_like_json(data_value.get('children'), nesting_lvl + 1),
                 ))
             else:
                 current_items = (('removed', 'old_value'), ('added', 'new_value'))

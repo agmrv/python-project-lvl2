@@ -1,6 +1,5 @@
 """Module of Rendering to plain format function."""
 
-from gendiff.builder_diff import has_children
 from gendiff.upload_file import remove_dubleqoutes, was_string
 
 
@@ -65,9 +64,9 @@ def render(diff, path=''):
         if status == 'unmodified':
             continue
         if status == 'modified':
-            if has_children(diff_value):
+            if 'children' in diff_value:
                 new_path = '{0}{1}.'.format(path, key)
-                output_parts.append(render(diff_value['children'], new_path))
+                output_parts.append(render(diff_value.get('children'), new_path))
             else:
                 output_parts.append(generate_string_diff(path + key, status, diff_value))
         else:

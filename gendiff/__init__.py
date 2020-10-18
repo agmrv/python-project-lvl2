@@ -4,6 +4,6 @@
 
 # Шаг 3. Предоставление функции.
 # Возможность использования пакета как библиотеки. Верно?
-from gendiff.get_diff import generate_diff
+from gendiff.build_diff import generate_diff
 
 __all__ = ['generate_diff']  # noqa: WPS410

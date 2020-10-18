@@ -11,7 +11,7 @@ MAPPING_FOR_CHOOSE_SIGN = types.MappingProxyType({
 })
 
 
-def generate_string_diff(indent, sign, key, some_value):
+def to_string(indent, sign, key, some_value):
     """Generate string representation from parameters.
 
     Args:
@@ -74,7 +74,7 @@ def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
         indent = '    ' * nesting_lvl
         if status == 'modified':
             if 'children' in data_value:
-                output_parts.append(generate_string_diff(
+                output_parts.append(to_string(
                     indent,
                     ' ',
                     data_key,
@@ -83,7 +83,7 @@ def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
             else:
                 current_items = (('removed', 'old_value'), ('added', 'new_value'))
                 for current_status, current_value in current_items:
-                    output_parts.append(generate_string_diff(
+                    output_parts.append(to_string(
                         indent,
                         MAPPING_FOR_CHOOSE_SIGN[current_status],
                         data_key,
@@ -92,7 +92,7 @@ def diff_to_str_like_json(diff_data, nesting_lvl):  # noqa: WPS210
                             nesting_lvl + 2,
                         )))
         else:
-            output_parts.append(generate_string_diff(
+            output_parts.append(to_string(
                 indent,
                 MAPPING_FOR_CHOOSE_SIGN[status],
                 data_key,

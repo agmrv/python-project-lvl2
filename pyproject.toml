@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agmrv_gendiff"
-version = "0.5.1"
+version = "0.5.2"
 description = "The Difference Generator"
 authors = ["agmrv <airatgum@gmail.com>"]
 packages = [
@@ -16,7 +16,7 @@ repository = "https://github.com/agmrv/python-project-lvl2"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-PyYAML = "^5.3.2"
+PyYAML = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.14.1"

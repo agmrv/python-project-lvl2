@@ -16,7 +16,7 @@ repository = "https://github.com/agmrv/python-project-lvl2"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-PyYAML = "^5.3.1"
+PyYAML = "^5.3.2"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.14.1"

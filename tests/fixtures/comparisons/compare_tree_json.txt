@@ -14,11 +14,19 @@
                 "value": "200"
             },
             "setting3": {
-                "new_value": {
-                    "key": "\"value\""
-                },
-                "old_value": "true",
-                "status": "modified"
+                "status": "modified",
+                "value": [
+                    [
+                        "removed",
+                        "true"
+                    ],
+                    [
+                        "added",
+                        {
+                            "key": "\"value\""
+                        }
+                    ]
+                ]
             },
             "setting4": {
                 "status": "added",
@@ -35,12 +43,20 @@
                     "doge": {
                         "children": {
                             "wow": {
-                                "new_value": "\"so much\"",
-                                "old_value": "\"too much\"",
-                                "status": "modified"
+                                "status": "modified",
+                                "value": [
+                                    [
+                                        "removed",
+                                        "\"too much\""
+                                    ],
+                                    [
+                                        "added",
+                                        "\"so much\""
+                                    ]
+                                ]
                             }
                         },
-                        "status": "modified"
+                        "status": "nested"
                     },
                     "key": {
                         "status": "unmodified",
@@ -51,31 +67,47 @@
                         "value": "\"vops\""
                     }
                 },
-                "status": "modified"
+                "status": "nested"
             }
         },
-        "status": "modified"
+        "status": "nested"
     },
     "group1": {
         "children": {
             "baz": {
-                "new_value": "\"bars\"",
-                "old_value": "\"bas\"",
-                "status": "modified"
+                "status": "modified",
+                "value": [
+                    [
+                        "removed",
+                        "\"bas\""
+                    ],
+                    [
+                        "added",
+                        "\"bars\""
+                    ]
+                ]
             },
             "foo": {
                 "status": "unmodified",
                 "value": "\"bar\""
             },
             "nest": {
-                "new_value": "\"str\"",
-                "old_value": {
-                    "key": "\"value\""
-                },
-                "status": "modified"
+                "status": "modified",
+                "value": [
+                    [
+                        "removed",
+                        {
+                            "key": "\"value\""
+                        }
+                    ],
+                    [
+                        "added",
+                        "\"str\""
+                    ]
+                ]
             }
         },
-        "status": "modified"
+        "status": "nested"
     },
     "group2": {
         "status": "removed",

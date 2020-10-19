@@ -1,6 +1,6 @@
 """Module of Rendering to plain format function."""
 
-from gendiff.upload_file import remove_dubleqoutes, was_string
+from gendiff.load_file import remove_dubleqoutes, was_string
 
 
 def formatting(element):
@@ -14,8 +14,10 @@ def formatting(element):
     """
     if isinstance(element, dict):
         return '[complex value]'
+
     if was_string(element):
         return "'{0}'".format(remove_dubleqoutes(element))
+
     return element
 
 
@@ -32,15 +34,17 @@ def generate_string_diff(path, status, diff_value):
     """
     if status == 'removed':
         return "Property '{0}' was {1}".format(path, status)
+
     if status == 'added':
         return "Property '{0}' was {1} with value: {2}".format(
             path,
             status,
             formatting(diff_value),
         )
+
     if status == 'modified':
-        old_value = formatting(diff_value['old_value'])
-        new_value = formatting(diff_value['new_value'])
+        old_value = formatting(diff_value[0][1])
+        new_value = formatting(diff_value[1][1])
         return "Property '{0}' was updated. From {1} to {2}".format(
             path,
             old_value,
@@ -58,21 +62,23 @@ def render(diff, path=''):
     Returns:
         string
     """
-    output_parts = []
-    for key, diff_value in diff.items():
-        status = diff_value['status']
+    lines = []
+
+    for item_key, item_value in diff.items():
+        status = item_value['status']
+
         if status == 'unmodified':
             continue
-        if status == 'modified':
-            if 'children' in diff_value:
-                new_path = '{0}{1}.'.format(path, key)
-                output_parts.append(render(diff_value.get('children'), new_path))
-            else:
-                output_parts.append(generate_string_diff(path + key, status, diff_value))
+
+        elif status == 'nested':
+            new_path = '{0}{1}.'.format(path, item_key)
+            lines.append(render(item_value.get('children'), new_path))
+
         else:
-            output_parts.append(generate_string_diff(
-                path + key,
+            lines.append(generate_string_diff(
+                path + item_key,
                 status,
-                diff_value['value'],
+                item_value['value'],
             ))
-    return '\n'.join(output_parts)
+
+    return '\n'.join(lines)

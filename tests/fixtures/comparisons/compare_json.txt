@@ -1,8 +1,16 @@
 {
     "123": {
-        "new_value": "444",
-        "old_value": "123",
-        "status": "modified"
+        "status": "modified",
+        "value": [
+            [
+                "removed",
+                "123"
+            ],
+            [
+                "added",
+                "444"
+            ]
+        ]
     },
     "follow": {
         "status": "removed",
@@ -17,19 +25,43 @@
         "value": "\"123.234.53.22\""
     },
     "test": {
-        "new_value": "\"new text\"",
-        "old_value": "\"text\"",
-        "status": "modified"
+        "status": "modified",
+        "value": [
+            [
+                "removed",
+                "\"text\""
+            ],
+            [
+                "added",
+                "\"new text\""
+            ]
+        ]
     },
     "timeout": {
-        "new_value": "20",
-        "old_value": "50",
-        "status": "modified"
+        "status": "modified",
+        "value": [
+            [
+                "removed",
+                "50"
+            ],
+            [
+                "added",
+                "20"
+            ]
+        ]
     },
     "verbose": {
-        "new_value": "true",
-        "old_value": "false",
-        "status": "modified"
+        "status": "modified",
+        "value": [
+            [
+                "removed",
+                "false"
+            ],
+            [
+                "added",
+                "true"
+            ]
+        ]
     },
     "тест": {
         "status": "added",

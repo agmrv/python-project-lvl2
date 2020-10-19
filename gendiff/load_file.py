@@ -15,40 +15,37 @@ MAPPING_FOR_UPLOAD = types.MappingProxyType({
 })
 
 
-def yaml_convert_value(element):
-    """Convert element to initial YAML format.
+def to_string(value_to_convert):
+    """Convert value to string initial format.
 
     Args:
-        element: value to convert
+        value_to_convert: value to convert
 
     Returns:
-        string
+        correct string
     """
-    if isinstance(element, str):
-        new_element = yaml.safe_dump(element).split('\n')[0]
-        return '"{0}"'.format(new_element)
-    return yaml.safe_dump(element).split('\n')[0]
+    if value_to_convert is None:
+        return 'null'
+    elif value_to_convert is True:
+        return 'true'
+    elif value_to_convert is False:
+        return 'false'
+    return str(value_to_convert)
 
 
-MAPPING_FOR_CONVERT_VALUE = types.MappingProxyType({
-    '.json': lambda element: json.dumps(element),
-    '.yml': yaml_convert_value,
-    '.yaml': yaml_convert_value,
-})
-
-
-def convert_values(some_item, extension):
-    """Convert dict values to initial format.
+def convert_values(dict_to_convert):
+    """Convert dict values to string initial format.
 
     Args:
-        some_item: dict to convert
-        extension: file extension
+        dict_to_convert: dict to convert
     """
-    for key, some_value in some_item.items():
-        if isinstance(some_value, dict):
-            convert_values(some_value, extension)
+    for item_key, item_value in dict_to_convert.items():
+        if isinstance(item_value, dict):
+            convert_values(item_value)
+        elif isinstance(item_value, str):
+            dict_to_convert[item_key] = '"{0}"'.format(item_value)
         else:
-            some_item[key] = MAPPING_FOR_CONVERT_VALUE[extension](some_value)
+            dict_to_convert[item_key] = to_string(item_value)
 
 
 def load_file(filepath):
@@ -58,12 +55,12 @@ def load_file(filepath):
         filepath: path to file.
 
     Returns:
-        File Object.  # ???
+        dict
     """
     _, extension = splitext(filepath)
     with open(filepath) as file_descriptor:
         file_object = MAPPING_FOR_UPLOAD[extension](file_descriptor)
-        convert_values(file_object, extension)  # convert data to initial format
+        convert_values(file_object)  # convert data to string initial format
         return file_object
 
 

@@ -18,20 +18,16 @@ def test_file_not_found():
         +
         "'{0}/tests/fixtures/nonexistent.json'".format(cwd)
     )
-    assert (generate_diff(file1_abspath, file2_abspath)) == expected  # noqa: S101
+    assert generate_diff(file1_abspath, file2_abspath) == expected  # noqa: S101
 
 
 def test_invalid_output_format():
     """Test for 'Invalid Output Format' case."""
-    file1_abspath = abspath('tests/fixtures/before.json')
-    file2_abspath = abspath('tests/fixtures/after.json')
+    file1 = 'tests/fixtures/before.json'
+    file2 = 'tests/fixtures/after.json'
     expected = (
         "Invalid output format: 'invalid-format'.\n"
         +
         "Try 'json', 'plain' or 'json-like'."
     )
-    assert (generate_diff(  # noqa: S101
-        file1_abspath,
-        file2_abspath,
-        output_format='invalid-format',
-    )) == expected
+    assert generate_diff(file1, file2, output_format='invalid-format') == expected

@@ -52,7 +52,7 @@ def build_diff(before, after):
             }
         else:
             diff[common_key] = {
-                'values': [('removed', before_value), ('added', after_value)],
+                'value': [('removed', before_value), ('added', after_value)],
                 'status': 'modified',
             }
 
@@ -76,11 +76,11 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
         'json': json_view.render,
     }
 
-    try:
-        formatter = mapping_for_choose_render_function[output_format]
-    except KeyError as key_error:
+    formatter = mapping_for_choose_render_function.get(output_format)
+    if not formatter:
         return (
-            'Invalid output format: {0}.\n'.format(key_error) +
+            "Invalid output format: '{0}'.\n".format(output_format)
+            +
             "Try 'json', 'plain' or 'json-like'."
         )
 

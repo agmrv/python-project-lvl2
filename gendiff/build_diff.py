@@ -5,7 +5,7 @@
 from collections import OrderedDict
 
 from gendiff.formatters import json_like_view, json_view, plain_view
-from gendiff.upload_file import upload_file
+from gendiff.load_file import load_file
 
 
 def build_diff(before, after):
@@ -48,12 +48,11 @@ def build_diff(before, after):
         elif isinstance(before_value, dict) and isinstance(after_value, dict):
             diff[common_key] = {
                 'children': build_diff(before_value, after_value),
-                'status': 'modified',
+                'status': 'nested',
             }
         else:
             diff[common_key] = {
-                'new_value': after_value,
-                'old_value': before_value,
+                'values': [('removed', before_value), ('added', after_value)],
                 'status': 'modified',
             }
 
@@ -86,8 +85,8 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
         )
 
     try:
-        before = upload_file(file_path1)
-        after = upload_file(file_path2)
+        before = load_file(file_path1)
+        after = load_file(file_path2)
     except FileNotFoundError as file_error:
         return "File not found.\n{0}: '{1}'".format(
             file_error.args[1],

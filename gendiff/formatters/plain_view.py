@@ -67,14 +67,13 @@ def render(diff, path=''):
     for item_key, item_value in diff.items():
         status = item_value['status']
 
-        if status == 'unmodified':
-            continue
+        if status == 'nested':
+            lines.append(render(
+                item_value.get('children'),
+                '{0}{1}.'.format(path, item_key),
+            ))
 
-        elif status == 'nested':
-            new_path = '{0}{1}.'.format(path, item_key)
-            lines.append(render(item_value.get('children'), new_path))
-
-        else:
+        elif status != 'unmodified':
             lines.append(generate_string_diff(
                 path + item_key,
                 status,

@@ -1,4 +1,4 @@
-"""Module of Rendering to JSON-like format function."""
+"""Module of rendering to JSON-like format function."""
 
 import types
 
@@ -20,7 +20,7 @@ def to_string(strings, nesting_lvl):
         nesting_lvl: nesting level
 
     Returns:
-        String like JSON
+        string like JSON
     """
     indent = '    ' * nesting_lvl
     return '{0}\n{1}\n{2}{3}'.format('{', '\n'.join(strings), indent, '}')
@@ -52,7 +52,7 @@ def value_to_string_like_json(some_value, nesting_lvl):
         nesting_lvl: nesting level
 
     Returns:
-        string like JSON.
+        string like JSON
     """
     if isinstance(some_value, dict):
         lines = []
@@ -77,7 +77,7 @@ def diff_to_string(diff, nesting_lvl):
         nesting_lvl: nesting level
 
     Returns:
-        String like JSON to output.
+        string like JSON to output
     """
     lines = []
 
@@ -109,6 +109,6 @@ def render(diff):
         diff: diff object
 
     Returns:
-        String to output
+        string to output
     """
     return diff_to_string(diff, 0)

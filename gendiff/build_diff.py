@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-"""Module of Difference Builder."""
+"""Module of the difference builder."""
 
 from collections import OrderedDict
 
@@ -16,7 +16,7 @@ def build_diff(before, after):
         after: file after change
 
     Returns:
-        diff.
+        diff
     """
     diff = {}
     before_keys = set(before.keys())
@@ -64,7 +64,7 @@ def generate_diff(file_path1, file_path2, output_format='json-like'):
         output_format: output format: plain or json-like
 
     Returns:
-        Return the formatted diff.
+        formatted diff
     """
     mapping_for_choose_render_function = {
         'plain': plain_view.render,

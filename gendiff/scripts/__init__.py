@@ -1,3 +1,3 @@
 # -*- coding:utf-8 -*-
 
-"""Scripts of 'Difference Generator."""
+"""Script of the 'Difference Generator."""

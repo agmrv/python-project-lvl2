@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-"""Script of 'Difference Generator'."""
+"""Script of the 'Difference Generator'."""
 
 import argparse
 

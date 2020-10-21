@@ -1,4 +1,4 @@
-"""Module of Rendering to plain format function."""
+"""Module of rendering to plain format function."""
 
 from gendiff.load_file import remove_dubleqoutes, was_string
 

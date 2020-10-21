@@ -1,4 +1,4 @@
-"""Module of Rendering to JSON format function."""
+"""Module of rendering to JSON format function."""
 
 import json
 

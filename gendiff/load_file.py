@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-"""Module for uplode file."""
+"""Module for load file."""
 
 import json
 import types
@@ -50,7 +50,7 @@ def load_file(filepath):
     """Load file from filepath.
 
     Args:
-        filepath: path to file.
+        filepath: path to file
 
     Returns:
         dict

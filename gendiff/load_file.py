@@ -26,10 +26,8 @@ def to_string(value_to_convert):
     """
     if value_to_convert is None:
         return 'null'
-    elif value_to_convert is True:
-        return 'true'
-    elif value_to_convert is False:
-        return 'false'
+    elif isinstance(value_to_convert, bool):
+        return 'true' if value_to_convert else 'false'
     elif isinstance(value_to_convert, str):
         return '"{0}"'.format(value_to_convert)
     return str(value_to_convert)

@@ -22,24 +22,20 @@ def build_diff(before, after):
     before_keys = set(before.keys())
     after_keys = set(after.keys())
 
-    removed_keys = before_keys.difference(after_keys)
-    for removed_key in removed_keys:
+    for removed_key in before_keys.difference(after_keys):
         diff[removed_key] = {
             'value': before[removed_key],
             'status': 'removed',
         }
 
-    added_keys = after_keys.difference(before_keys)
-    for added_key in added_keys:
+    for added_key in after_keys.difference(before_keys):
         diff[added_key] = {
             'value': after[added_key],
             'status': 'added',
         }
 
-    common_keys = before_keys.intersection(after_keys)
-    for common_key in common_keys:
-        before_value = before[common_key]
-        after_value = after[common_key]
+    for common_key in before_keys.intersection(after_keys):
+        before_value, after_value = before[common_key], after[common_key]
         if before_value == after_value:
             diff[common_key] = {
                 'value': before_value,

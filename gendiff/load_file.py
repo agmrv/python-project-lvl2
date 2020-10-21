@@ -30,6 +30,8 @@ def to_string(value_to_convert):
         return 'true'
     elif value_to_convert is False:
         return 'false'
+    elif isinstance(value_to_convert, str):
+        return '"{0}"'.format(value_to_convert)
     return str(value_to_convert)
 
 
@@ -42,8 +44,6 @@ def convert_values(dict_to_convert):
     for item_key, item_value in dict_to_convert.items():
         if isinstance(item_value, dict):
             convert_values(item_value)
-        elif isinstance(item_value, str):
-            dict_to_convert[item_key] = '"{0}"'.format(item_value)
         else:
             dict_to_convert[item_key] = to_string(item_value)
 

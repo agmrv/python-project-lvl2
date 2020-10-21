@@ -8,6 +8,25 @@ from gendiff.formatters import json_like_view, json_view, plain_view
 from gendiff.load_file import load_file
 
 
+def get_key_sets(before, after):
+    """Generate a dictionary of key sets from files.
+
+    Args:
+        before: file before change
+        after: file after change
+
+    Returns:
+        dict of key sets
+    """
+    before_keys = set(before.keys())
+    after_keys = set(after.keys())
+    return {
+        'added': after_keys.difference(before_keys),
+        'removed':  before_keys.difference(after_keys),
+        'common': before_keys.intersection(after_keys),
+    }
+
+
 def build_diff(before, after):
     """Build the diff between before and after files.
 
@@ -19,22 +38,21 @@ def build_diff(before, after):
         diff
     """
     diff = {}
-    before_keys = set(before.keys())
-    after_keys = set(after.keys())
+    key_sets = get_key_sets(before, after)
 
-    for removed_key in before_keys.difference(after_keys):
+    for removed_key in key_sets['removed']:
         diff[removed_key] = {
             'value': before[removed_key],
             'status': 'removed',
         }
 
-    for added_key in after_keys.difference(before_keys):
+    for added_key in key_sets['added']:
         diff[added_key] = {
             'value': after[added_key],
             'status': 'added',
         }
 
-    for common_key in before_keys.intersection(after_keys):
+    for common_key in key_sets['common']:
         before_value, after_value = before[common_key], after[common_key]
         if before_value == after_value:
             diff[common_key] = {

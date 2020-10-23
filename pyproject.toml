@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agmrv_gendiff"
-version = "0.5.2"
+version = "0.5.3"
 description = "The Difference Generator"
 authors = ["agmrv <airatgum@gmail.com>"]
 packages = [

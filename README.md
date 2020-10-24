@@ -26,4 +26,4 @@
 <a href="https://asciinema.org/a/hxduq1cJzXAtKdCGVr4DnepVy" target="_blank"><img src="https://asciinema.org/a/hxduq1cJzXAtKdCGVr4DnepVy.svg" width="600"></a>
 
 ### Example for flat JSON and tree YAML files json format:
-<a href="https://asciinema.org/a/kD5MrNnEnLFAiPPKOrwRKsD4d" target="_blank"><img src="https://asciinema.org/a/kD5MrNnEnLFAiPPKOrwRKsD4d.svg" width="600"></a>
+<a href="https://asciinema.org/a/GEP80d72KQvjcqKGYUoKOhw2G" target="_blank"><img src="https://asciinema.org/a/GEP80d72KQvjcqKGYUoKOhw2G.svg" width="600"></a>

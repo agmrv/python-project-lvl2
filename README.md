@@ -6,7 +6,7 @@
 
 # Hello!
 
-## This is the Python Project lvl 2 - Difference Generator
+## This is the Python Project lvl 2 - The Difference Generator
 
 ### In [these](#videos) videos below you will see how to *install** the 'Difference Generator' package and how to get the diff.
 *to install this package run the command:

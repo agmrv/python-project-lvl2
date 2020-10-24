@@ -29,19 +29,19 @@ from gendiff import generate_diff
             'stylish',
         ),
         (
-            'tests/fixtures/before.yml',
+            'tests/fixtures/before.yaml',
             'tests/fixtures/after.yml',
             'tests/fixtures/comparisons/json.txt',
             'json',
         ),
         (
-            'tests/fixtures/before.yml',
+            'tests/fixtures/before.yaml',
             'tests/fixtures/after.yml',
             'tests/fixtures/comparisons/plain.txt',
             'plain',
         ),
         (
-            'tests/fixtures/before.yml',
+            'tests/fixtures/before.yaml',
             'tests/fixtures/after.yml',
             'tests/fixtures/comparisons/stylish.txt',
             'stylish',

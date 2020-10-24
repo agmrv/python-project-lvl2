@@ -3,13 +3,13 @@
 from gendiff.value_converter import remove_doubleqoutes
 
 
-def generate_string(some_key, some_value, status, depth):
+def generate_string(some_key, some_value, type_, depth):
     """Generate string from parameters.
 
     Args:
         some_key: key
         some_value: value
-        status: status for choose sign (-, +, space)
+        type_: type for choose sign (-, +, space)
         depth: nesting level
 
     Returns:
@@ -21,7 +21,7 @@ def generate_string(some_key, some_value, status, depth):
         'unchanged': ' ',
         'nested': ' ',
     }
-    sign = signs[status]
+    sign = signs[type_]
     normalize_value = some_value
 
     if isinstance(some_value, dict):
@@ -48,23 +48,23 @@ def render(diff, depth=0):
     for item_key, item_value in diff.items():
 
         if isinstance(item_value, tuple):
-            status = item_value[0]
+            type_ = item_value[0]
             current_value = item_value[1]
 
         else:
-            status = 'unchanged'
+            type_ = 'unchanged'
             current_value = item_value
 
-        if status == 'nested':
+        if type_ == 'nested':
             nested_diff = render(current_value, depth + 1)
-            lines.append(generate_string(item_key, nested_diff, status, depth))
+            lines.append(generate_string(item_key, nested_diff, type_, depth))
 
-        elif status == 'changed':
+        elif type_ == 'changed':
             lines.append(generate_string(item_key, current_value[0], 'removed', depth))
             lines.append(generate_string(item_key, current_value[1], 'added', depth))
 
         else:
-            lines.append(generate_string(item_key, current_value, status, depth))
+            lines.append(generate_string(item_key, current_value, type_, depth))
 
     indent = '{0}{1}'.format('\n', '    ' * depth)
     return '{{{0}{1}{2}}}'.format(indent, indent.join(lines), indent)

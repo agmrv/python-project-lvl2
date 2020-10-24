@@ -34,27 +34,27 @@ def render(diff, path=''):
     lines = []
 
     for item_key, item_value in diff.items():
-        status = item_value[0]
+        type_ = item_value[0]
         current_value = item_value[1]
         current_path = path + item_key
 
-        if status == 'removed':
+        if type_ == 'removed':
             lines.append("Property '{0}' was removed".format(current_path))
 
-        elif status == 'added':
+        elif type_ == 'added':
             lines.append("Property '{0}' was added with value: {1}".format(
                 current_path,
                 formatting(current_value),
             ))
 
-        elif status == 'changed':
+        elif type_ == 'changed':
             lines.append("Property '{0}' was updated. From {1} to {2}".format(
                 current_path,
                 formatting(current_value[0]),
                 formatting(current_value[1]),
             ))
 
-        elif status == 'nested':
+        elif type_ == 'nested':
             lines.append(render(
                 current_value,
                 '{0}.'.format(current_path),

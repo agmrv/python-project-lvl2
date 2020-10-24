@@ -67,4 +67,4 @@ def render(diff, depth=0):
             lines.append(generate_string(item_key, current_value, status, depth))
 
     indent = '{0}{1}'.format('\n', '    ' * depth)
-    return '{0}{1}{2}{3}{4}'.format('{', indent, indent.join(lines), indent, '}')
+    return '{{{0}{1}{2}}}'.format(indent, indent.join(lines), indent)

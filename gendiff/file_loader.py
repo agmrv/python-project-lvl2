@@ -23,9 +23,7 @@ def parse(file_data, extension):
     """
     if extension == '.json':
         return json.load(file_data)
-    if extension == '.yaml':
-        return yaml.safe_load(file_data)
-    if extension == '.yml':
+    if extension == '.yaml' or extension == '.yml':
         return yaml.safe_load(file_data)
     raise ValueError(extension)
 

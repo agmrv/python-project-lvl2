@@ -3,25 +3,13 @@
 
 """Script of the 'Difference Generator'."""
 
-import argparse
-
 from gendiff import generate_diff
+from gendiff.argparser import get_args
 
 
 def main():
     """Parse args, generate and print the difference."""
-    parser = argparse.ArgumentParser(description='Generate diff')
-    parser.add_argument('first_file', type=str)
-    parser.add_argument('second_file', type=str)
-    parser.add_argument(
-        '-f',
-        '--format',
-        default='stylish',
-        help='set format of output',
-        metavar='FORMAT',
-        dest='format',
-    )
-    args = parser.parse_args()
+    args = get_args()
     print(
         generate_diff(args.first_file, args.second_file, args.format),
     )

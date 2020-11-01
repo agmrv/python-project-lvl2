@@ -21,15 +21,15 @@ def formatting(element):
     return element
 
 
-def render(diff, path=''):
-    """Render the diff to plain format string.
+def generate_string(diff, path):
+    """Generate string diff to plain format.
 
     Args:
         diff: diff object
         path: current path
 
     Returns:
-        string
+        plain format string
     """
     lines = []
 
@@ -54,9 +54,21 @@ def render(diff, path=''):
             ))
 
         elif type_ == 'nested':
-            lines.append(render(
+            lines.append(generate_string(
                 current_value,
                 '{0}.'.format(current_path),
             ))
 
     return '\n'.join(lines)
+
+
+def render(diff):
+    """Start render the diff to plain format string with path=''.
+
+    Args:
+        diff: diff object
+
+    Returns:
+        plain format string
+    """
+    return generate_string(diff, '')

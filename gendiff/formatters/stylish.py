@@ -3,7 +3,7 @@
 from gendiff.converter_to_initial_format import remove_doubleqoutes
 
 
-def generate_string(some_key, some_value, type_, depth):
+def make_line(some_key, some_value, type_, depth):
     """Generate string from parameters.
 
     Args:
@@ -25,7 +25,7 @@ def generate_string(some_key, some_value, type_, depth):
     normalize_value = some_value
 
     if isinstance(some_value, dict):
-        normalize_value = render(some_value, depth + 1)
+        normalize_value = generate_string(some_value, depth + 1)
 
     elif some_value.startswith('"') and some_value.endswith('"'):
         normalize_value = remove_doubleqoutes(some_value)
@@ -33,15 +33,15 @@ def generate_string(some_key, some_value, type_, depth):
     return '  {0} {1}: {2}'.format(sign, some_key, normalize_value)
 
 
-def render(diff, depth=0):
-    """Render the diff and dict to stylish string.
+def generate_string(diff, depth):
+    """Generate string diff and dict to stylish format.
 
     Args:
         diff: diff object or some dict
         depth: nesting level
 
     Returns:
-        string stylish to output
+        stylish format string
     """
     lines = []
 
@@ -56,15 +56,27 @@ def render(diff, depth=0):
             current_value = item_value
 
         if type_ == 'nested':
-            nested_diff = render(current_value, depth + 1)
-            lines.append(generate_string(item_key, nested_diff, type_, depth))
+            nested_diff = generate_string(current_value, depth + 1)
+            lines.append(make_line(item_key, nested_diff, type_, depth))
 
         elif type_ == 'changed':
-            lines.append(generate_string(item_key, current_value[0], 'removed', depth))
-            lines.append(generate_string(item_key, current_value[1], 'added', depth))
+            lines.append(make_line(item_key, current_value[0], 'removed', depth))
+            lines.append(make_line(item_key, current_value[1], 'added', depth))
 
         else:
-            lines.append(generate_string(item_key, current_value, type_, depth))
+            lines.append(make_line(item_key, current_value, type_, depth))
 
     indent = '{0}{1}'.format('\n', '    ' * depth)
     return '{{{0}{1}{2}}}'.format(indent, indent.join(lines), indent)
+
+
+def render(diff):
+    """Start render the diff to stylish format string with depth=0.
+
+    Args:
+        diff: diff object or some dict
+
+    Returns:
+        stylish format string
+    """
+    return generate_string(diff, 0)

@@ -34,8 +34,7 @@ def render(diff, path=''):
     lines = []
 
     for item_key, item_value in diff.items():
-        type_ = item_value[0]
-        current_value = item_value[1]
+        type_, current_value = item_value
         current_path = path + item_key
 
         if type_ == 'removed':

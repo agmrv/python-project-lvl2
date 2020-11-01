@@ -5,14 +5,14 @@ from os.path import splitext
 
 import yaml
 
-from gendiff.value_converter import convert_values
+from gendiff.converter_to_initial_format import convert
 
 
-def parse(file_data, extension):
+def parse(file_descriptor, extension):
     """Parse data according to extension.
 
     Args:
-        file_data: parsing data
+        file_descriptor: parsing data
         extension: file extension
 
     Returns:
@@ -22,24 +22,24 @@ def parse(file_data, extension):
         ValueError: unsupported extension
     """
     if extension == '.json':
-        return json.load(file_data)
+        return json.load(file_descriptor)
     if extension in {'.yaml', '.yml'}:
-        return yaml.safe_load(file_data)
+        return yaml.safe_load(file_descriptor)
     raise ValueError(extension)
 
 
-def load_file(filepath):
-    """Load file from filepath.
+def load_converted_data(filepath):
+    """Load converted file data from filepath.
 
     Args:
         filepath: path to file
 
     Returns:
-        dict
+        dict of file data
     """
     _, extension = splitext(filepath)
 
     with open(filepath) as file_descriptor:
-        parsed_file = parse(file_descriptor, extension)
-        convert_values(parsed_file)  # convert data to string initial format
-        return parsed_file
+        file_data = parse(file_descriptor, extension)
+        convert(file_data)  # convert data to string initial format
+        return file_data

@@ -19,7 +19,7 @@ def to_string(value_to_convert):
     return str(value_to_convert)
 
 
-def convert_values(dict_to_convert):
+def convert(dict_to_convert):
     """Convert dict values to string initial format.
 
     Args:
@@ -27,13 +27,13 @@ def convert_values(dict_to_convert):
     """
     for item_key, item_value in dict_to_convert.items():
         if isinstance(item_value, dict):
-            convert_values(item_value)
+            convert(item_value)
         else:
             dict_to_convert[item_key] = to_string(item_value)
 
 
 def remove_doubleqoutes(element_to_change):
-    """Remove duble quotes from string.
+    """Remove dublequotes from string.
 
     Needed for correct output format with or without quotes
     in formatter functions.

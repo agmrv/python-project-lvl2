@@ -1,6 +1,6 @@
 """Module of rendering to plain format function."""
 
-from gendiff.value_converter import remove_doubleqoutes
+from gendiff.converter_to_initial_format import remove_doubleqoutes
 
 
 def formatting(element):

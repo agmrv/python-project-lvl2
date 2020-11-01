@@ -1,6 +1,6 @@
 """Module of rendering to JSON-like format function."""
 
-from gendiff.value_converter import remove_doubleqoutes
+from gendiff.converter_to_initial_format import remove_doubleqoutes
 
 
 def generate_string(some_key, some_value, type_, depth):

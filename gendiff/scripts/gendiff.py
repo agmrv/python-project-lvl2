@@ -8,11 +8,9 @@ from gendiff.argparser import get_args
 
 
 def main():
-    """Parse args, generate and print the difference."""
+    """Print the difference."""
     args = get_args()
-    print(
-        generate_diff(args.first_file, args.second_file, args.format),
-    )
+    print(generate_diff(args.first_file, args.second_file, args.format))
 
 
 if __name__ == '__main__':

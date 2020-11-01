@@ -1,7 +1,5 @@
 """Module of rendering to plain format function."""
 
-from gendiff.converter_to_initial_format import remove_doubleqoutes
-
 
 def formatting(element):
     """Convert the value to the desired output format.
@@ -15,8 +13,14 @@ def formatting(element):
     if isinstance(element, dict):
         return '[complex value]'
 
-    if element.startswith('"') and element.endswith('"'):
-        return "'{0}'".format(remove_doubleqoutes(element))
+    elif element is None:
+        return 'null'
+
+    elif isinstance(element, bool):
+        return 'true' if element else 'false'
+
+    elif isinstance(element, str):
+        return "'{0}'".format(element)
 
     return element
 

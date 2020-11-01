@@ -2,45 +2,45 @@
     "123": [
         "changed",
         [
-            "123",
-            "444"
+            123,
+            444
         ]
     ],
     "follow": [
         "removed",
-        "false"
+        false
     ],
     "host": [
         "unchanged",
-        "\"hexlet.io\""
+        "hexlet.io"
     ],
     "proxy": [
         "removed",
-        "\"123.234.53.22\""
+        "123.234.53.22"
     ],
     "test": [
         "changed",
         [
-            "\"text\"",
-            "\"new text\""
+            "text",
+            "new text"
         ]
     ],
     "timeout": [
         "changed",
         [
-            "50",
-            "20"
+            50,
+            20
         ]
     ],
     "verbose": [
         "changed",
         [
-            "false",
-            "true"
+            false,
+            true
         ]
     ],
     "тест": [
         "added",
-        "null"
+        null
     ]
 }

@@ -4,33 +4,33 @@
         {
             "follow": [
                 "added",
-                "false"
+                false
             ],
             "setting1": [
                 "unchanged",
-                "\"Value 1\""
+                "Value 1"
             ],
             "setting2": [
                 "removed",
-                "200"
+                200
             ],
             "setting3": [
                 "changed",
                 [
-                    "true",
+                    true,
                     {
-                        "key": "\"value\""
+                        "key": "value"
                     }
                 ]
             ],
             "setting4": [
                 "added",
-                "\"blah blah\""
+                "blah blah"
             ],
             "setting5": [
                 "added",
                 {
-                    "key5": "\"value5\""
+                    "key5": "value5"
                 }
             ],
             "setting6": [
@@ -42,19 +42,19 @@
                             "wow": [
                                 "changed",
                                 [
-                                    "\"too much\"",
-                                    "\"so much\""
+                                    "too much",
+                                    "so much"
                                 ]
                             ]
                         }
                     ],
                     "key": [
                         "unchanged",
-                        "\"value\""
+                        "value"
                     ],
                     "ops": [
                         "added",
-                        "\"vops\""
+                        "vops"
                     ]
                 }
             ]
@@ -66,21 +66,21 @@
             "baz": [
                 "changed",
                 [
-                    "\"bas\"",
-                    "\"bars\""
+                    "bas",
+                    "bars"
                 ]
             ],
             "foo": [
                 "unchanged",
-                "\"bar\""
+                "bar"
             ],
             "nest": [
                 "changed",
                 [
                     {
-                        "key": "\"value\""
+                        "key": "value"
                     },
-                    "\"str\""
+                    "str"
                 ]
             ]
         }
@@ -88,9 +88,9 @@
     "group2": [
         "removed",
         {
-            "abc": "12345",
+            "abc": 12345,
             "deep": {
-                "id": "45"
+                "id": 45
             }
         }
     ],
@@ -99,10 +99,10 @@
         {
             "deep": {
                 "id": {
-                    "number": "45"
+                    "number": 45
                 }
             },
-            "fee": "100500"
+            "fee": 100500
         }
     ]
 }

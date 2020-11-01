@@ -5,8 +5,6 @@ from os.path import splitext
 
 import yaml
 
-from gendiff.converter_to_initial_format import convert
-
 
 def parse(file_descriptor, extension):
     """Parse data according to extension.
@@ -23,13 +21,15 @@ def parse(file_descriptor, extension):
     """
     if extension == '.json':
         return json.load(file_descriptor)
+
     if extension in {'.yaml', '.yml'}:
         return yaml.safe_load(file_descriptor)
+
     raise ValueError(extension)
 
 
-def load_converted_data(filepath):
-    """Load converted file data from filepath.
+def load_data(filepath):
+    """Load file data from filepath.
 
     Args:
         filepath: path to file
@@ -40,6 +40,4 @@ def load_converted_data(filepath):
     _, extension = splitext(filepath)
 
     with open(filepath) as file_descriptor:
-        file_data = parse(file_descriptor, extension)
-        convert(file_data)  # convert data to string initial format
-        return file_data
+        return parse(file_descriptor, extension)

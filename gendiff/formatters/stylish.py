@@ -1,6 +1,22 @@
 """Module of rendering to JSON-like format function."""
 
-from gendiff.converter_to_initial_format import remove_doubleqoutes
+
+def convert(element):
+    """Convert the value to the desired output format.
+
+    Args:
+        element: value to convert
+
+    Returns:
+        correct string
+    """
+    if element is None:
+        return 'null'
+
+    elif isinstance(element, bool):
+        return 'true' if element else 'false'
+
+    return element
 
 
 def make_line(some_key, some_value, type_, depth):
@@ -22,13 +38,12 @@ def make_line(some_key, some_value, type_, depth):
         'nested': ' ',
     }
     sign = signs[type_]
-    normalize_value = some_value
 
     if isinstance(some_value, dict):
         normalize_value = generate_string(some_value, depth + 1)
 
-    elif some_value.startswith('"') and some_value.endswith('"'):
-        normalize_value = remove_doubleqoutes(some_value)
+    else:
+        normalize_value = convert(some_value)  # convert data to string initial format
 
     return '  {0} {1}: {2}'.format(sign, some_key, normalize_value)
 

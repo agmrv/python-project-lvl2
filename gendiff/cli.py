@@ -1,4 +1,4 @@
-"""Agrparser of 'Difference Generator'."""
+"""CLI parser of the 'Difference Generator'."""
 
 import argparse
 

@@ -1,4 +1,4 @@
-"""Module for load file."""
+"""Module of the file reader."""
 
 import json
 from os.path import splitext
@@ -6,15 +6,15 @@ from os.path import splitext
 import yaml
 
 
-def parse(file_descriptor, extension):
-    """Parse data according to extension.
+def load(file_descriptor, extension):
+    """Load data according to extension.
 
     Args:
         file_descriptor: parsing data
         extension: file extension
 
     Returns:
-        parsed data dictionary
+        loaded data dictionary
 
     Raises:
         ValueError: unsupported extension
@@ -28,16 +28,16 @@ def parse(file_descriptor, extension):
     raise ValueError(extension)
 
 
-def load_data(filepath):
-    """Load file data from filepath.
+def read_data(filepath):
+    """Open file and read data from filepath.
 
     Args:
         filepath: path to file
 
     Returns:
-        dict of file data
+        dict from file data
     """
     _, extension = splitext(filepath)
 
     with open(filepath) as file_descriptor:
-        return parse(file_descriptor, extension)
+        return load(file_descriptor, extension)

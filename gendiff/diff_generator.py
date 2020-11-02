@@ -1,7 +1,7 @@
 """Module of the difference generator."""
 
 from gendiff.difference import build
-from gendiff.file_loader import load_data
+from gendiff.file_reader import read_data
 from gendiff.formatters import json, plain, stylish
 
 
@@ -31,8 +31,8 @@ def generate_diff(file_path1, file_path2, output_format='stylish'):
         )
 
     try:
-        before = load_data(file_path1)
-        after = load_data(file_path2)
+        before = read_data(file_path1)
+        after = read_data(file_path2)
 
     except ValueError as extension_error:
         return (

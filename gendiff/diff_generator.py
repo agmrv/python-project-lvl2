@@ -1,6 +1,6 @@
 """Module of the difference generator."""
 
-from gendiff.diff_structure_builder import build
+from gendiff.difference import build
 from gendiff.file_loader import load_data
 from gendiff.formatters import json, plain, stylish
 

@@ -35,10 +35,7 @@ def generate_diff(file_path1, file_path2, output_format='stylish'):
         after = read_data(file_path2)
 
     except ValueError as extension_error:
-        return (
-            "Unsupported file extension: '{0}'\n".format(extension_error)
-            + "'.json' and '.yaml' are supported."
-        )
+        return extension_error.args[0]
 
     except FileNotFoundError as file_error:
         return "File not found.\n{0}: '{1}'".format(

@@ -25,7 +25,10 @@ def load(file_descriptor, extension):
     if extension in {'.yaml', '.yml'}:
         return yaml.safe_load(file_descriptor)
 
-    raise ValueError(extension)
+    raise ValueError(
+        "Unsupported file extension: '{0}'\n".format(extension)
+        + "'.json' and '.yaml' are supported.",
+    )
 
 
 def read_data(filepath):

@@ -2,6 +2,8 @@
 
 """The 'generate_diff' function tests."""
 
+import json
+
 import pytest
 
 from gendiff import generate_diff
@@ -13,7 +15,7 @@ from gendiff import generate_diff
         (
             'tests/fixtures/before.json',
             'tests/fixtures/after.json',
-            'tests/fixtures/comparisons/json.txt',
+            'tests/fixtures/comparisons/json.json',
             'json',
         ),
         (
@@ -31,7 +33,7 @@ from gendiff import generate_diff
         (
             'tests/fixtures/before.yaml',
             'tests/fixtures/after.yml',
-            'tests/fixtures/comparisons/json.txt',
+            'tests/fixtures/comparisons/json.json',
             'json',
         ),
         (
@@ -49,7 +51,7 @@ from gendiff import generate_diff
         (
             'tests/fixtures/before_tree.json',
             'tests/fixtures/after_tree.json',
-            'tests/fixtures/comparisons/tree_json.txt',
+            'tests/fixtures/comparisons/tree_json.json',
             'json',
         ),
         (
@@ -67,7 +69,7 @@ from gendiff import generate_diff
         (
             'tests/fixtures/before_tree.yml',
             'tests/fixtures/after_tree.yml',
-            'tests/fixtures/comparisons/tree_json.txt',
+            'tests/fixtures/comparisons/tree_json.json',
             'json',
         ),
         (
@@ -99,7 +101,14 @@ def test_generate_diff(before, after, compare_result, output_format):
         compare_result: compare file path
         output_format: output format
     """
+    output = generate_diff(before, after, output_format)
+
     with open(compare_result, mode='r', encoding='UTF-8') as compare:
-        expected = compare.read()
-        output = generate_diff(before, after, output_format)
-        assert output == expected
+
+        if output_format == 'json':
+            expected = json.load(compare)
+            assert json.loads(output) == expected
+
+        else:
+            expected = compare.read()
+            assert output == expected

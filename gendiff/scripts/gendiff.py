@@ -4,7 +4,7 @@
 """Script of the 'Difference Generator'."""
 
 from gendiff import generate_diff
-from gendiff.argparser import get_args
+from gendiff.cli import get_args
 
 
 def main():

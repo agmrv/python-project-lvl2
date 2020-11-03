@@ -37,6 +37,7 @@ diff = OrderedDict([
         'fee': 100500,
         'deep': {'id': {'number': 45}},
     })),
+    ('тест', ('added', None)),
 ])
 
 

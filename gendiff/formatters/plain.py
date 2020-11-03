@@ -19,10 +19,7 @@ def formatting(element):
     elif isinstance(element, bool):
         return 'true' if element else 'false'
 
-    elif isinstance(element, str):
-        return "'{0}'".format(element)
-
-    return element
+    return "'{0}'".format(element) if isinstance(element, str) else element
 
 
 def generate_string(diff, path):

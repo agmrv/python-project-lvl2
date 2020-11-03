@@ -1,46 +1,108 @@
 {
-    "123": [
-        "changed",
-        [
-            123,
-            444
-        ]
+    "common": [
+        "nested",
+        {
+            "follow": [
+                "added",
+                false
+            ],
+            "setting1": [
+                "unchanged",
+                "Value 1"
+            ],
+            "setting2": [
+                "removed",
+                200
+            ],
+            "setting3": [
+                "changed",
+                [
+                    true,
+                    {
+                        "key": "value"
+                    }
+                ]
+            ],
+            "setting4": [
+                "added",
+                "blah blah"
+            ],
+            "setting5": [
+                "added",
+                {
+                    "key5": "value5"
+                }
+            ],
+            "setting6": [
+                "nested",
+                {
+                    "doge": [
+                        "nested",
+                        {
+                            "wow": [
+                                "changed",
+                                [
+                                    "too much",
+                                    "so much"
+                                ]
+                            ]
+                        }
+                    ],
+                    "key": [
+                        "unchanged",
+                        "value"
+                    ],
+                    "ops": [
+                        "added",
+                        "vops"
+                    ]
+                }
+            ]
+        }
     ],
-    "follow": [
+    "group1": [
+        "nested",
+        {
+            "baz": [
+                "changed",
+                [
+                    "bas",
+                    "bars"
+                ]
+            ],
+            "foo": [
+                "unchanged",
+                "bar"
+            ],
+            "nest": [
+                "changed",
+                [
+                    {
+                        "key": "value"
+                    },
+                    "str"
+                ]
+            ]
+        }
+    ],
+    "group2": [
         "removed",
-        false
+        {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        }
     ],
-    "host": [
-        "unchanged",
-        "hexlet.io"
-    ],
-    "proxy": [
-        "removed",
-        "123.234.53.22"
-    ],
-    "test": [
-        "changed",
-        [
-            "text",
-            "new text"
-        ]
-    ],
-    "timeout": [
-        "changed",
-        [
-            50,
-            20
-        ]
-    ],
-    "verbose": [
-        "changed",
-        [
-            false,
-            true
-        ]
-    ],
-    "тест": [
+    "group3": [
         "added",
-        null
+        {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        }
     ]
 }

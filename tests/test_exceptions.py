@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 """Exception test functions."""
 
 from os import getcwd

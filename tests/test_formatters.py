@@ -5,7 +5,7 @@ import json as j
 import pytest
 
 from gendiff.formatters import json, plain, stylish
-from test_difference import diff
+from tests.fixtures.diff import diff
 
 mapping_for_choose_formatter = {
     'json': json.render,

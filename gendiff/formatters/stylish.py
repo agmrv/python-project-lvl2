@@ -19,7 +19,7 @@ def convert(element):
     return element
 
 
-def make_line(some_key, some_value, type_, depth):
+def line(some_key, some_value, type_, depth):
     """Generate string from parameters.
 
     Args:
@@ -72,14 +72,14 @@ def generate_string(diff, depth):
 
         if type_ == 'nested':
             nested_diff = generate_string(current_value, depth + 1)
-            lines.append(make_line(item_key, nested_diff, type_, depth))
+            lines.append(line(item_key, nested_diff, type_, depth))
 
         elif type_ == 'changed':
-            lines.append(make_line(item_key, current_value[0], 'removed', depth))
-            lines.append(make_line(item_key, current_value[1], 'added', depth))
+            lines.append(line(item_key, current_value[0], 'removed', depth))
+            lines.append(line(item_key, current_value[1], 'added', depth))
 
         else:
-            lines.append(make_line(item_key, current_value, type_, depth))
+            lines.append(line(item_key, current_value, type_, depth))
 
     indent = '{0}{1}'.format('\n', '    ' * depth)
     return '{{{0}{1}{2}}}'.format(indent, indent.join(lines), indent)

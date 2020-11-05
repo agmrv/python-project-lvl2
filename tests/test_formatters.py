@@ -17,12 +17,13 @@ from tests.fixtures.diff import diff
     ],
     ids=['json', 'plain', 'stylish'],
 )
-def test_formatters(output_format, expected_output):
+def test_formatters(output_format, expected_output, diff):
     """Test formatter render functions.
 
     Args:
         output_format: output format
         expected_output: expected output path
+        diff: diff dict
     """
     output = mapping_for_choose_formatter.get(output_format)(diff)
 

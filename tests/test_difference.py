@@ -4,21 +4,19 @@ import pytest
 
 from gendiff.difference import build
 from gendiff.file_reader import read_data
-from tests.fixtures.diff import diff
+from tests.fixtures.diff import diff as expected_diff
 
 
 @pytest.mark.parametrize(
-    'before_dict, after_dict, expected_diff',
+    'before_dict, after_dict',
     [
         (
             read_data('tests/fixtures/before.json'),
             read_data('tests/fixtures/after.json'),
-            diff,
         ),
         (
             read_data('tests/fixtures/before.yaml'),
             read_data('tests/fixtures/after.yml'),
-            diff,
         ),
     ],
     ids=['JSON', 'YAML'],

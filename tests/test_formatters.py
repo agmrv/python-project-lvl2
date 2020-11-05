@@ -4,14 +4,8 @@ import json as j
 
 import pytest
 
-from gendiff.formatters import json, plain, stylish
+from gendiff.formatters.mapping import mapping_for_choose_formatter
 from tests.fixtures.diff import diff
-
-mapping_for_choose_formatter = {
-    'json': json.render,
-    'plain': plain.render,
-    'stylish': stylish.render,
-}
 
 
 @pytest.mark.parametrize(

@@ -2,7 +2,7 @@
 
 from gendiff.difference import build
 from gendiff.file_reader import read_data
-from gendiff.formatters import json, plain, stylish
+from gendiff.formatters.mapping import mapping_for_choose_formatter
 
 
 def generate_diff(file_path1, file_path2, output_format='stylish'):
@@ -16,12 +16,6 @@ def generate_diff(file_path1, file_path2, output_format='stylish'):
     Returns:
         formatted diff
     """
-    mapping_for_choose_formatter = {
-        'json': json.render,
-        'plain': plain.render,
-        'stylish': stylish.render,
-    }
-
     formatter = mapping_for_choose_formatter.get(output_format)
 
     if not formatter:

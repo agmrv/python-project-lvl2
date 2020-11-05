@@ -3,7 +3,7 @@
 import argparse
 
 
-def get_args():
+def parse_args():
     """Parse and return the args from CLI.
 
     Returns:

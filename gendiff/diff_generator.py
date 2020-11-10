@@ -1,8 +1,8 @@
 """Module of the difference generator."""
 
 from gendiff.difference import build
+from gendiff.formatters import mapping_for_choose_formatter
 from gendiff.io import read_data
-from gendiff.formatters.mapping import mapping_for_choose_formatter
 
 
 def generate_diff(file_path1, file_path2, output_format='stylish'):

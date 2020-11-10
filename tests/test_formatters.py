@@ -4,7 +4,7 @@ import json as j
 
 import pytest
 
-from gendiff.formatters.mapping import mapping_for_choose_formatter
+from gendiff.formatters import mapping_for_choose_formatter
 from tests.fixtures.diff import diff
 
 

@@ -1,7 +1,7 @@
 """Module of the difference generator."""
 
 from gendiff.difference import build
-from gendiff.file_reader import read_data
+from gendiff.io import read_data
 from gendiff.formatters.mapping import mapping_for_choose_formatter
 
 

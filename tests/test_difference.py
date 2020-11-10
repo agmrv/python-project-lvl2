@@ -3,7 +3,7 @@
 import pytest
 
 from gendiff.difference import build
-from gendiff.file_reader import read_data
+from gendiff.io import read_data
 from tests.fixtures.diff import diff as expected_diff
 
 

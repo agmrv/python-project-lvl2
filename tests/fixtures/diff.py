@@ -2,17 +2,7 @@
 
 from collections import OrderedDict
 
-import pytest
-
-
-@pytest.fixture()
-def diff():
-    """Return the diff OrderedDict for test.
-
-    Returns:
-        diff OrderedDict
-    """
-    return OrderedDict([
+diff = OrderedDict([
         ('common', ('nested', OrderedDict([
             ('follow', ('added', False)),
             ('setting1', ('unchanged', 'Value 1')),

@@ -8,15 +8,17 @@ from tests.fixtures.diff import diff as expected_diff
 
 
 @pytest.mark.parametrize(
-    "before_dict, after_dict",
+    "before_dict, after_dict, expected_diff",
     [
         (
             read_data("tests/fixtures/before.json"),
             read_data("tests/fixtures/after.json"),
+            expected_diff,
         ),
         (
             read_data("tests/fixtures/before.yaml"),
             read_data("tests/fixtures/after.yml"),
+            expected_diff,
         ),
     ],
     ids=["JSON", "YAML"],

@@ -9,11 +9,11 @@ from tests.fixtures.diff import diff
 
 
 @pytest.mark.parametrize(
-    "output_format, expected_output",
+    "output_format, expected_output, diff",
     [
-        ("json", "tests/fixtures/comparisons/json.json"),
-        ("plain", "tests/fixtures/comparisons/plain.txt"),
-        ("stylish", "tests/fixtures/comparisons/stylish.txt"),
+        ("json", "tests/fixtures/comparisons/json.json", diff),
+        ("plain", "tests/fixtures/comparisons/plain.txt", diff),
+        ("stylish", "tests/fixtures/comparisons/stylish.txt", diff),
     ],
     ids=["json", "plain", "stylish"],
 )

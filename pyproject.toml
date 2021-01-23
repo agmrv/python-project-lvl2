@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "agmrv_gendiff"
+name = "hexlet-code"
 version = "0.5.4"
 description = "The Difference Generator"
 authors = ["agmrv <airatgum@gmail.com>"]

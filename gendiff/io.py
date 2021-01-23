@@ -26,8 +26,8 @@ def load(file_descriptor, extension):
         return yaml.safe_load(file_descriptor)
 
     raise ValueError(
-        "Unsupported file extension: '{0}'\n".format(extension)
-        + "'.json' and '.yaml' are supported.",
+        "Unsupported file extension: '{0}'\n".format(extension) +
+        "'.json' and '.yaml' are supported.",
     )
 
 

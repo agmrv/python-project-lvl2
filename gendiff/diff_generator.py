@@ -20,8 +20,8 @@ def generate_diff(file_path1, file_path2, output_format="stylish"):
 
     if not formatter:
         return (
-            "Invalid output format: '{0}'.\n".format(output_format)
-            + "Try 'json', 'plain' or 'stylish'."
+            "Invalid output format: '{0}'.\n".format(output_format) +
+            "Try 'json', 'plain' or 'stylish'."
         )
 
     try:

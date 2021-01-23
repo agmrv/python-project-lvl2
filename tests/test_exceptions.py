@@ -6,7 +6,7 @@ from os.path import abspath
 import pytest
 
 from gendiff import generate_diff
-from gendiff.constants_errors import VALUE_ERROR, FORMAT_ERROR, NOT_FOUND_ERROR
+from gendiff.error_constants import VALUE_ERROR, FORMAT_ERROR, NOT_FOUND_ERROR
 
 
 @pytest.mark.parametrize(

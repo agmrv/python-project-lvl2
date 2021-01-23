@@ -3,7 +3,7 @@
 from gendiff.difference import build
 from gendiff.formatters import mapping_for_choose_formatter
 from gendiff.io import read_data
-from gendiff.constants_errors import FORMAT_ERROR
+from gendiff.error_constants import FORMAT_ERROR
 
 
 def generate_diff(file_path1, file_path2, output_format="stylish"):

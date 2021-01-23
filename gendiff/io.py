@@ -5,7 +5,7 @@ from os.path import splitext
 
 import yaml
 
-from gendiff.constants_errors import VALUE_ERROR
+from gendiff.error_constants import VALUE_ERROR
 
 
 def load(file_descriptor, extension):

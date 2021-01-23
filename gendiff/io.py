@@ -5,6 +5,8 @@ from os.path import splitext
 
 import yaml
 
+from gendiff.constants_errors import VALUE_ERROR
+
 
 def load(file_descriptor, extension):
     """Load data according to extension.
@@ -25,10 +27,7 @@ def load(file_descriptor, extension):
     if extension in {".yaml", ".yml"}:
         return yaml.safe_load(file_descriptor)
 
-    raise ValueError(
-        "Unsupported file extension: '{0}'\n".format(extension) +
-        "'.json' and '.yaml' are supported.",
-    )
+    raise ValueError(VALUE_ERROR.format(extension))
 
 
 def read_data(filepath):

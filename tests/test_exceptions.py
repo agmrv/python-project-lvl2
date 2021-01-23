@@ -6,6 +6,7 @@ from os.path import abspath
 import pytest
 
 from gendiff import generate_diff
+from gendiff.constants_errors import VALUE_ERROR, FORMAT_ERROR, NOT_FOUND_ERROR
 
 
 @pytest.mark.parametrize(
@@ -15,22 +16,19 @@ from gendiff import generate_diff
             "tests/fixtures/before.json",
             "tests/fixtures/after.json",
             "invalid-format",
-            "Invalid output format: 'invalid-format'.\n" +
-            "Try 'json', 'plain' or 'stylish'.",
+            FORMAT_ERROR.format("invalid-format"),
         ),
         (
             "tests/fixtures/before.xml",
             "tests/fixtures/after.json",
             "stylish",
-            "Unsupported file extension: '.xml'\n" +
-            "'.json' and '.yaml' are supported.",
+            VALUE_ERROR.format(".xml"),
         ),
         (
             abspath("tests/fixtures/nonexistent.json"),
             abspath("tests/fixtures/after.json"),
             "stylish",
-            "File not found.\nNo such file or directory: " +
-            "'{0}/tests/fixtures/nonexistent.json'".format(getcwd()),
+            NOT_FOUND_ERROR.format(getcwd()),
         ),
     ],
     ids=[

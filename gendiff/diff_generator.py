@@ -3,6 +3,7 @@
 from gendiff.difference import build
 from gendiff.formatters import mapping_for_choose_formatter
 from gendiff.io import read_data
+from gendiff.constants_errors import FORMAT_ERROR
 
 
 def generate_diff(file_path1, file_path2, output_format="stylish"):
@@ -19,10 +20,7 @@ def generate_diff(file_path1, file_path2, output_format="stylish"):
     formatter = mapping_for_choose_formatter.get(output_format)
 
     if not formatter:
-        return (
-            "Invalid output format: '{0}'.\n".format(output_format) +
-            "Try 'json', 'plain' or 'stylish'."
-        )
+        return FORMAT_ERROR.format(output_format)
 
     try:
         before = read_data(file_path1)

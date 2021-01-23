@@ -11,10 +11,10 @@ def convert(element):
         correct string
     """
     if element is None:
-        return 'null'
+        return "null"
 
     elif isinstance(element, bool):
-        return 'true' if element else 'false'
+        return "true" if element else "false"
 
     return element
 
@@ -32,10 +32,10 @@ def line(some_key, some_value, type_, depth):
         string
     """
     signs = {
-        'removed': '-',
-        'added': '+',
-        'unchanged': ' ',
-        'nested': ' ',
+        "removed": "-",
+        "added": "+",
+        "unchanged": " ",
+        "nested": " ",
     }
     sign = signs[type_]
 
@@ -43,9 +43,9 @@ def line(some_key, some_value, type_, depth):
         normalize_value = generate_string(some_value, depth + 1)
 
     else:
-        normalize_value = convert(some_value)  # convert data to string initial format
+        normalize_value = convert(some_value)
 
-    return '  {0} {1}: {2}'.format(sign, some_key, normalize_value)
+    return "  {0} {1}: {2}".format(sign, some_key, normalize_value)
 
 
 def generate_string(diff, depth):
@@ -67,22 +67,22 @@ def generate_string(diff, depth):
             current_value = item_value[1]
 
         else:
-            type_ = 'unchanged'
+            type_ = "unchanged"
             current_value = item_value
 
-        if type_ == 'nested':
+        if type_ == "nested":
             nested_diff = generate_string(current_value, depth + 1)
             lines.append(line(item_key, nested_diff, type_, depth))
 
-        elif type_ == 'changed':
-            lines.append(line(item_key, current_value[0], 'removed', depth))
-            lines.append(line(item_key, current_value[1], 'added', depth))
+        elif type_ == "changed":
+            lines.append(line(item_key, current_value[0], "removed", depth))
+            lines.append(line(item_key, current_value[1], "added", depth))
 
         else:
             lines.append(line(item_key, current_value, type_, depth))
 
-    indent = '{0}{1}'.format('\n', '    ' * depth)
-    return '{{{0}{1}{2}}}'.format(indent, indent.join(lines), indent)
+    indent = "{0}{1}".format("\n", "    " * depth)
+    return "{{{0}{1}{2}}}".format(indent, indent.join(lines), indent)
 
 
 def render(diff):

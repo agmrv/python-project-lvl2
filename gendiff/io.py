@@ -19,10 +19,10 @@ def load(file_descriptor, extension):
     Raises:
         ValueError: unsupported extension
     """
-    if extension == '.json':
+    if extension == ".json":
         return json.load(file_descriptor)
 
-    if extension in {'.yaml', '.yml'}:
+    if extension in {".yaml", ".yml"}:
         return yaml.safe_load(file_descriptor)
 
     raise ValueError(

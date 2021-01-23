@@ -11,13 +11,13 @@ def formatting(element):
         formatted string
     """
     if isinstance(element, dict):
-        return '[complex value]'
+        return "[complex value]"
 
     elif element is None:
-        return 'null'
+        return "null"
 
     elif isinstance(element, bool):
-        return 'true' if element else 'false'
+        return "true" if element else "false"
 
     return "'{0}'".format(element) if isinstance(element, str) else element
 
@@ -38,29 +38,35 @@ def generate_string(diff, path):
         type_, current_value = item_value
         current_path = path + item_key
 
-        if type_ == 'removed':
+        if type_ == "removed":
             lines.append("Property '{0}' was removed".format(current_path))
 
-        elif type_ == 'added':
-            lines.append("Property '{0}' was added with value: {1}".format(
-                current_path,
-                formatting(current_value),
-            ))
+        elif type_ == "added":
+            lines.append(
+                "Property '{0}' was added with value: {1}".format(
+                    current_path,
+                    formatting(current_value),
+                )
+            )
 
-        elif type_ == 'changed':
-            lines.append("Property '{0}' was updated. From {1} to {2}".format(
-                current_path,
-                formatting(current_value[0]),
-                formatting(current_value[1]),
-            ))
+        elif type_ == "changed":
+            lines.append(
+                "Property '{0}' was updated. From {1} to {2}".format(
+                    current_path,
+                    formatting(current_value[0]),
+                    formatting(current_value[1]),
+                )
+            )
 
-        elif type_ == 'nested':
-            lines.append(generate_string(
-                current_value,
-                '{0}.'.format(current_path),
-            ))
+        elif type_ == "nested":
+            lines.append(
+                generate_string(
+                    current_value,
+                    "{0}.".format(current_path),
+                )
+            )
 
-    return '\n'.join(lines)
+    return "\n".join(lines)
 
 
 def render(diff):
@@ -72,4 +78,4 @@ def render(diff):
     Returns:
         plain format string
     """
-    return generate_string(diff, '')
+    return generate_string(diff, "")

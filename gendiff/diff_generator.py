@@ -5,7 +5,7 @@ from gendiff.formatters import mapping_for_choose_formatter
 from gendiff.io import read_data
 
 
-def generate_diff(file_path1, file_path2, output_format='stylish'):
+def generate_diff(file_path1, file_path2, output_format="stylish"):
     """Generate the diff between file_path1 and file_path2 files.
 
     Args:

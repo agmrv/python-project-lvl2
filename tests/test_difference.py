@@ -8,18 +8,18 @@ from tests.fixtures.diff import diff as expected_diff
 
 
 @pytest.mark.parametrize(
-    'before_dict, after_dict',
+    "before_dict, after_dict",
     [
         (
-            read_data('tests/fixtures/before.json'),
-            read_data('tests/fixtures/after.json'),
+            read_data("tests/fixtures/before.json"),
+            read_data("tests/fixtures/after.json"),
         ),
         (
-            read_data('tests/fixtures/before.yaml'),
-            read_data('tests/fixtures/after.yml'),
+            read_data("tests/fixtures/before.yaml"),
+            read_data("tests/fixtures/after.yml"),
         ),
     ],
-    ids=['JSON', 'YAML'],
+    ids=["JSON", "YAML"],
 )
 def test_difference(before_dict, after_dict, expected_diff):
     """Test difference build function.

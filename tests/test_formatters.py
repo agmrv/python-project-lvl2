@@ -9,13 +9,13 @@ from tests.fixtures.diff import diff
 
 
 @pytest.mark.parametrize(
-    'output_format, expected_output',
+    "output_format, expected_output",
     [
-        ('json', 'tests/fixtures/comparisons/json.json'),
-        ('plain', 'tests/fixtures/comparisons/plain.txt'),
-        ('stylish', 'tests/fixtures/comparisons/stylish.txt'),
+        ("json", "tests/fixtures/comparisons/json.json"),
+        ("plain", "tests/fixtures/comparisons/plain.txt"),
+        ("stylish", "tests/fixtures/comparisons/stylish.txt"),
     ],
-    ids=['json', 'plain', 'stylish'],
+    ids=["json", "plain", "stylish"],
 )
 def test_formatters(output_format, expected_output, diff):
     """Test formatter render functions.
@@ -27,9 +27,9 @@ def test_formatters(output_format, expected_output, diff):
     """
     output = mapping_for_choose_formatter.get(output_format)(diff)
 
-    with open(expected_output, mode='r', encoding='UTF-8') as expected:
+    with open(expected_output, mode="r", encoding="UTF-8") as expected:
 
-        if output_format == 'json':
+        if output_format == "json":
             assert j.loads(output) == j.load(expected)
 
         else:
